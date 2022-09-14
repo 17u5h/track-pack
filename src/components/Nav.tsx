@@ -1,19 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import {Logo} from "./Logo";
 import {NavBurger} from "./NavBurger";
 import {NavMenu} from "./NavMenu";
 
-type mainNavProps = {
-	className: string
-}
 
-export function Nav(props: mainNavProps) {
+
+export function Nav() {
+	const [visible, setVisible] = useState(false)
+	const toggleNavMenu = () => {setVisible(!visible)}
+
 	return (
-		<div className={props.className}>
+		<div className={'main__nav nav'}>
 			<Logo divClassName={'nav__logo logo'} imgClassName={'logo__image'}/>
-			<NavBurger burgerClass={'nav__burger burger'} lineClass={'burger__line'}/>
-			<NavMenu navMenuClassName={'nav__menu menu'} listClassName={'menu__list'} itemClassName={'menu__item'}
-							 linkClassName={'menu__link'}/>
+			<NavBurger onClick={toggleNavMenu} />
+			{visible && <NavMenu />}
 		</div>
 	)
 }

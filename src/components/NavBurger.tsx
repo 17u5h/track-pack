@@ -1,16 +1,15 @@
 import React from "react";
 
-type burgerProps = {
-	burgerClass: string
-	lineClass: string
+type props={
+	onClick: () => void
 }
 
-export function NavBurger(props: burgerProps) {
+export function NavBurger(props: props) {
 	return (
-		<div className={props.burgerClass}>
-			<span className={props.lineClass}></span>
-			<span className={props.lineClass}></span>
-			<span className={props.lineClass}></span>
+		<div className={'nav__burger burger'} onClick={props.onClick}>
+			<span className={'burger__line'}></span>
+			<span className={'burger__line'}></span>
+			<span className={'burger__line'}></span>
 		</div>
 	)
 }

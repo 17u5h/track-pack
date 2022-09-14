@@ -1,16 +1,11 @@
 import React from 'react'
 import {SvgImg} from "./SvgImg";
 
-type props = {
-	divClassName: string
-	inputClassName: string
-}
-
-export function CenterblockSearch(props: props) {
+export function CenterblockSearch() {
 	return (
-		<div className={props.divClassName}>
+		<div className={'centerblock__search search'}>
 			<SvgImg className={'search__svg'} href={'../img/icon/sprite.svg#icon-search'}/>
-			<input className={props.inputClassName} type="search" placeholder={'Поиск'} name={'search'}/>
+			<input className={'search__text'} type="search" placeholder={'Поиск'} name={'search'}/>
 		</div>
 	)
 }

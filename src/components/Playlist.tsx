@@ -1,9 +1,7 @@
 import React from 'react'
 import {PlaylistItem} from "./PlaylistItem";
 
-type playlistProps = {
-	divClassName: string
-}
+
 const tracks = [{
 	trackTitle: 'Guilt',
 	trackAuthor: 'Nero',
@@ -15,9 +13,9 @@ const tracks = [{
 	albumLink: 'https://',
 }]
 
-export function Playlist(props: playlistProps) {
+export function Playlist() {
 	return (
-		<div className={props.divClassName}>
+		<div className={'content__playlist playlist'}>
 			<PlaylistItem
 				trackTitle={tracks[0].trackTitle}
 				trackAuthor={tracks[0].trackAuthor}

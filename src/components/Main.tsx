@@ -5,19 +5,21 @@ import {SideBar} from "./SideBar";
 
 const personalData = {
 	name: 'Sergey.Ivanov',
-	imgPlaylistItem: '../img/playlist01.png',
+	imgPlaylistItems: [ '../img/playlist01.png', '../img/playlist02.png', '../img/playlist03.png'],
 	sideBarLink: '#'
 }
 
 export function Main() {
 	return (
 		<div className='main'>
-			<Nav className={'main__nav nav'}/>
-			<CenterBlock divClassName={'main__centerblock centerblock'}/>
+			<Nav />
+			<CenterBlock />
 			<SideBar personalName={personalData.name}
-							 imgSrc={personalData.imgPlaylistItem}
-							 sideBarLink={personalData.sideBarLink}
+								 imgSrc={personalData.imgPlaylistItems}
+								 sideBarLink={personalData.sideBarLink}
 			/>
+
+
 		</div>
 	)
 }

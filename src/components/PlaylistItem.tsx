@@ -21,7 +21,7 @@ export function PlaylistItem(props: itemProps) {
 						<SvgImg className={'track__title-svg'} href={props.imageLink}/>
 					</div>
 					<div className={'track__title-text'}>
-						<a className={'rack__title-link'} href={props.titleLink}>
+						<a className={'track__title-link'} href={props.titleLink}>
 							{props.trackTitle}
 							<span className={'track__title-span'}></span>
 						</a>

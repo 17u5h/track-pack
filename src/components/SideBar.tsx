@@ -3,7 +3,7 @@ import {SideBarBlock} from "./SideBarBlock";
 
 type props = {
 	personalName: string
-	imgSrc: string
+	imgSrc: string[]
 	sideBarLink: string
 }
 
@@ -13,7 +13,6 @@ export function SideBar(props: props) {
 			<div className={'sidebar__personal'}>
 				<p className={'sidebar__personal-name'}>{props.personalName}</p>
 				<div className={'sidebar__avatar'}>
-
 				</div>
 				<SideBarBlock imgSrc={props.imgSrc} sideBarLink={props.sideBarLink}/>
 			</div>
