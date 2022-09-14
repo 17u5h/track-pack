@@ -11,7 +11,7 @@ export function CenterblockFilter() {
 	const [activeAuthors, setActiveAuthors] = useState(false)
 	const togglePopUpFilterByAuthors = () => {
 		setActiveAuthors(!activeAuthors)
-		setActiveYears(false) //мне не очень нравится ручное удаление, но времени в обрез)
+		setActiveYears(false) //мне не очень нравится ручное удаление
 		setActiveGenre(false)
 	}
 
