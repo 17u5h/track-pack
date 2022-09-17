@@ -5,7 +5,7 @@ import {FilterButton} from "./CenterBlockFilter/FilterButton";
 const filteredAuthors = ['30 seconds to Mars', 'Arctic Monkeys', 'Blink 182', 'Dire Straits', 'Foo fighters', 'Green Day', "Guns 'n Roses", 'Metallica', 'The Offspring']
 const filteredByYears = ['Dire Straits', "Guns 'n Roses", 'Metallica', 'The Offspring', 'Foo fighters', 'Blink 182', '30 seconds to Mars', 'Green Day', 'Arctic Monkeys']
 const filteredByGenre = ["Guns 'n Roses", 'Metallica', 'The Offspring', 'Foo fighters', 'Blink 182', '30 seconds to Mars', 'Green Day', 'Arctic Monkeys', 'Dire Straits']
-//здесь будет прилетать объект с сервера, который потом буду фильтровать по определенным полям и делать Array.from
+//здесь будет прилетать массив объектов с сервера, который потом буду фильтровать по определенным полям и делать Array.from
 
 export function CenterblockFilter() {
 	const [activeAuthors, setActiveAuthors] = useState(false)
