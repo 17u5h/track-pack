@@ -1,3 +1,11 @@
+Моя задача в этом проекте - создать плеер, работающий с бэкендом.
+
+Студентам был выдан макет от дизайнера. И студенты, в строгом соответствии с макетом, создают приложение на React.
+С каждым новым уроком приложение перекапывается, изменяется.
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
