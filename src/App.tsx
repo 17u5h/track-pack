@@ -1,20 +1,20 @@
 import React from 'react';
-import './App.scss';
 import {Main} from "./components/Main";
 import {Bar} from "./components/Bar";
+import * as S from "./styles"
 
 function App() {
-
 	return (
-		<div className={'wrapper'}>
-				<div className={'container'}>
+		<>
+			<S.GlobalStyle/>
+			<S.Wrapper>
+				<S.Container>
 					<Main/>
 					<Bar/>
-					<footer className={'footer'}></footer>
-				</div>
-		</div>
+				</S.Container>
+			</S.Wrapper>
+		</>
 	);
 }
-
 
 export default App;

@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {PlaylistItem} from "./PlaylistItem";
+import * as S from "../styles";
 
 const tracks = [
 	{
@@ -20,21 +21,20 @@ export function Playlist() {
 
 	setTimeout(() => {
 		setIsLoading(false)
-	},1000)
+	}, 1000)
 
 	return (
-		<div className={'content__playlist playlist'}>
-			{!isLoading &&<PlaylistItem
-				 trackTitle = {tracks[0].trackTitle}
-					trackAuthor={tracks[0].trackAuthor}
-					trackAlbum={tracks[0].trackAlbum}
-					trackTime={tracks[0].trackTime}
-					imageLink={tracks[0].imageLink}
-					titleLink={tracks[0].titleLink}
-					authorLink={tracks[0].authorLink}
-					albumLink={tracks[0].albumLink}
-				/>}
-
-		</div>
+		<S.Playlist>
+			{!isLoading && <PlaylistItem
+				trackTitle={tracks[0].trackTitle}
+				trackAuthor={tracks[0].trackAuthor}
+				trackAlbum={tracks[0].trackAlbum}
+				trackTime={tracks[0].trackTime}
+				imageLink={tracks[0].imageLink}
+				titleLink={tracks[0].titleLink}
+				authorLink={tracks[0].authorLink}
+				albumLink={tracks[0].albumLink}
+			/>}
+		</S.Playlist>
 	)
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import {SideBarItem} from "./SideBarItem";
+import * as S from "../styles";
 
 type props = {
 	imgSrc: string[]
@@ -8,16 +9,16 @@ type props = {
 
 export function SideBarBlock(props: props) {
 	return (
-		<div className={'sidebar__block'}>
-			<div className={'sidebar__list'}>
-				{props.imgSrc.map((el,i) => (
+		<S.SideBarBlock>
+			<S.SideBarList>
+				{props.imgSrc.map((el, i) => (
 					<SideBarItem
-											key = {i}
-											sideBarLink={props.sideBarLink}
-											imgSrc={props.imgSrc[i]}
+						key={i}
+						sideBarLink={props.sideBarLink}
+						imgSrc={props.imgSrc[i]}
 					/>
 				))}
-			</div>
-		</div>
+			</S.SideBarList>
+		</S.SideBarBlock>
 	)
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import {SideBarBlock} from "./SideBarBlock";
+import * as S from "../styles";
 
 type props = {
 	personalName: string
@@ -9,13 +10,12 @@ type props = {
 
 export function SideBar(props: props) {
 	return (
-		<div className={'main__sidebar sidebar'}>
-			<div className={'sidebar__personal'}>
-				<p className={'sidebar__personal-name'}>{props.personalName}</p>
-				<div className={'sidebar__avatar'}>
-				</div>
+		<S.SideBar>
+			<S.SideBarPersonal>
+				<p>{props.personalName}</p>
+				<S.PersonalAvatar/>
 				<SideBarBlock imgSrc={props.imgSrc} sideBarLink={props.sideBarLink}/>
-			</div>
-		</div>
+			</S.SideBarPersonal>
+		</S.SideBar>
 	)
 }

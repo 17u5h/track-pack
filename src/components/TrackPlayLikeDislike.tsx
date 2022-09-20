@@ -1,15 +1,19 @@
 import React from 'react'
-import {SvgImg} from "./SvgImg";
+import * as S from "../styles";
 
 export function TrackPlayLikeDislike() {
 	return (
-		<div className='track-play__like-dis'>
-			<div className={'track-play__like _btn-icon'}>
-				<SvgImg className={'track-play__like-svg'} href={'../img/icon/sprite.svg#icon-like'}/>
+		<S.TrackPlayLikeDislike>
+			<div>
+				<S.LikeDislikeSvg $like="like">
+					<use href={'../img/icon/sprite.svg#icon-like'}/>
+				</S.LikeDislikeSvg>
 			</div>
-			<div className={'track-play__dislike _btn-icon'}>
-				<SvgImg className={'track-play__dislike-svg'} href={'../img/icon/sprite.svg#icon-dislike'}/>
+			<div>
+				<S.LikeDislikeSvg $like="">
+					<use href={'../img/icon/sprite.svg#icon-dislike'}/>
+				</S.LikeDislikeSvg>
 			</div>
-		</div>
+		</S.TrackPlayLikeDislike>
 	)
 }
