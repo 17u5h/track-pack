@@ -1,17 +1,19 @@
 import React from 'react'
-import {SvgImg} from "./SvgImg";
+import * as S from "../styles";
 
 export function BarVolumeBlock() {
 	return (
-		<div className='bar__volume-block volume'>
-			<div className={'volume__content'}>
-				<div className={'volume__image'}>
-					<SvgImg className={'volume__svg'} href={'../img/icon/sprite.svg#icon-volume'}/>
-				</div>
-				<div className={'volume__progress _btn'}>
-					<input className={'volume__progress-line _btn'} type="range" name={'range'}/>
-				</div>
-			</div>
-		</div>
+		<S.BarVolumeBlock>
+			<S.VolumeContent>
+				<S.VolumeImage>
+					<svg>
+						<use href={'../img/icon/sprite.svg#icon-volume'}/>
+					</svg>
+				</S.VolumeImage>
+				<S.VolumeValue>
+					<input type="range" name={'range'}/>
+				</S.VolumeValue>
+			</S.VolumeContent>
+		</S.BarVolumeBlock>
 	)
 }

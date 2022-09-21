@@ -1,4 +1,5 @@
 import React from 'react'
+import * as S from "../styles";
 
 type props = {
 	sideBarLink: string
@@ -7,10 +8,10 @@ type props = {
 
 export function SideBarItem(props: props) {
 	return (
-		<div className={'sidebar__item'}>
-			<a className={'sidebar__link'} href={props.sideBarLink}>
-				<img className={'sidebar__img'} src={props.imgSrc} alt="day's playlist"/>
+		<S.SideBarItem>
+			<a href={props.sideBarLink}>
+				<img src={props.imgSrc} alt="day's playlist"/>
 			</a>
-		</div>
+		</S.SideBarItem>
 	)
 }

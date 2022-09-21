@@ -1,29 +1,29 @@
 import React from "react";
-
+import * as S from "../styles";
 
 const hrefs = [{
-		id: 1,
-		href: 'https://',
-	}, {
-		id: 2,
-		href: 'https://'
-	}, {
-		id: 3,
-		href: 'https://'
-	}]
+	id: 1,
+	href: 'https://',
+}, {
+	id: 2,
+	href: 'https://'
+}, {
+	id: 3,
+	href: 'https://'
+}]
 const content: string[] = ['Главное', 'Мой плейлист', 'Войти']
 
 export function NavMenu() {
 	return (
-		<div className={'nav__menu menu'}>
-			<ul className={'menu__list'}>
+		<S.NavMenu>
+			<S.NavMenuList>
 				{hrefs.map((link, i) => (
-					<li key={link.id} className={'menu__item'}>
-						<a href={link.href} className={'menu__link'}>{content[i]}</a>
+					<li key={link.id}>
+						<a href={link.href}>{content[i]}</a>
 					</li>
 				))}
-			</ul>
-		</div>
+			</S.NavMenuList>
+		</S.NavMenu>
 	)
 }
 

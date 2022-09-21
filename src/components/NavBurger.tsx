@@ -1,15 +1,17 @@
 import React from "react";
+import * as S from "../styles";
 
-type props={
+
+type props = {
 	onClick: () => void
 }
 
 export function NavBurger(props: props) {
 	return (
-		<div className={'nav__burger burger'} onClick={props.onClick}>
-			<span className={'burger__line'}></span>
-			<span className={'burger__line'}></span>
-			<span className={'burger__line'}></span>
-		</div>
+		<S.NavBurger onClick={props.onClick}>
+			<S.BurgerLine/>
+			<S.BurgerLine/>
+			<S.BurgerLine/>
+		</S.NavBurger>
 	)
 }

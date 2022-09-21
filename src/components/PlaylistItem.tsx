@@ -1,5 +1,6 @@
 import React from 'react'
-import {SvgImg} from "./SvgImg";
+import * as S from "../styles"
+
 
 type itemProps = {
 	trackTitle?: string
@@ -14,36 +15,40 @@ type itemProps = {
 
 export function PlaylistItem(props: itemProps) {
 	return (
-		<div className={'playlist__item'}>
-			<div className={'playlist__track track'}>
-				<div className={'track__title'}>
-					<div className={'track__title-image'}>
-						<SvgImg className={'track__title-svg'} href={props.imageLink}/>
-					</div>
-					<div className={'track__title-text'}>
-						<a className={'track__title-link'} href={props.titleLink}>
+		<S.PlaylistItem>
+			<S.PlaylistTrack>
+				<S.TrackTitle>
+					<S.TrackTitleImage>
+						<svg>
+							<use href={props.imageLink}/>
+						</svg>
+					</S.TrackTitleImage>
+					<S.TrackTitleText>
+						<a href={props.titleLink}>
 							{props.trackTitle}
-							<span className={'track__title-span'}></span>
 						</a>
-					</div>
-				</div>
-				<div className={'track__author'}>
-					<a className={'track__author-link'} href={props.authorLink}>
+						<span></span>
+					</S.TrackTitleText>
+				</S.TrackTitle>
+				<S.TrackAuthor>
+					<a href={props.authorLink}>
 						{props.trackAuthor}
 					</a>
-				</div>
-				<div className={'track__album'}>
-					<a className={'track__album-link'} href={props.albumLink}>
+				</S.TrackAuthor>
+				<S.TrackAlbum>
+					<a href={props.albumLink}>
 						{props.trackAlbum}
 					</a>
-				</div>
-				<div className={'track__time'}>
-					<SvgImg className={'track__time-svg'} href={'../img/icon/sprite.svg#icon-like'}/>
-					<span className={'track__time-text'}>
+				</S.TrackAlbum>
+				<S.TrackTime>
+					<svg>
+						<use href={'../img/icon/sprite.svg#icon-like'}/>
+					</svg>
+					<span>
 						{props.trackTime}
 					</span>
-				</div>
-			</div>
-		</div>
+				</S.TrackTime>
+			</S.PlaylistTrack>
+		</S.PlaylistItem>
 	)
 }

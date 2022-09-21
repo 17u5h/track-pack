@@ -1,16 +1,19 @@
 import React from 'react'
-import {SvgImg} from "./SvgImg";
+import * as S from "../styles";
 
 
 export function PlaylistTitle() {
 	return (
-		<div className={'content__title playlist-title'}>
-			<div className={'playlist-title__col col01'}>Трек</div>
-			<div className={'playlist-title__col col02'}>ИСПОЛНИТЕЛЬ</div>
-			<div className={'playlist-title__col col03'}>АЛЬБОМ</div>
-			<div className={'playlist-title__col col04'}>
-				<SvgImg className={'playlist-title__svg'} href={'img/icon/sprite.svg#icon-watch'}/>
-			</div>
-		</div>
+		<S.PlayListTitle>
+			<S.PlaylistTitleItem/>
+			<S.PlaylistTitleItem01>Трек</S.PlaylistTitleItem01>
+			<S.PlaylistTitleItem02>ИСПОЛНИТЕЛЬ</S.PlaylistTitleItem02>
+			<S.PlaylistTitleItem03>АЛЬБОМ</S.PlaylistTitleItem03>
+			<S.PlaylistTitleItem04>
+				<S.PlaylistTitleIcon>
+					<use href={'img/icon/sprite.svg#icon-watch'}/>
+				</S.PlaylistTitleIcon>
+			</S.PlaylistTitleItem04>
+		</S.PlayListTitle>
 	)
 }

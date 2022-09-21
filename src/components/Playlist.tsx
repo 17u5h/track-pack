@@ -1,22 +1,31 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {PlaylistItem} from "./PlaylistItem";
+import * as S from "../styles";
 
+const tracks = [
+	{
+		"id": "1",
+		"trackTitle": "Guilt",
+		"trackAuthor": "Nero",
+		"trackAlbum": "Welcome Reality",
+		"trackTime": "4:44",
+		"imageLink": "../img/icon/sprite.svg#icon-note",
+		"titleLink": "https://",
+		"authorLink": "https://",
+		"albumLink": "https://"
+	}]
 
-const tracks = [{
-	trackTitle: 'Guilt',
-	trackAuthor: 'Nero',
-	trackAlbum: 'Welcome Reality',
-	trackTime: '4:44',
-	imageLink: '../img/icon/sprite.svg#icon-note',
-	titleLink: 'https://',
-	authorLink: 'https://',
-	albumLink: 'https://',
-}]
 
 export function Playlist() {
+	const [isLoading, setIsLoading] = useState(true)
+
+	setTimeout(() => {
+		setIsLoading(false)
+	}, 1000)
+
 	return (
-		<div className={'content__playlist playlist'}>
-			<PlaylistItem
+		<S.Playlist>
+			{!isLoading && <PlaylistItem
 				trackTitle={tracks[0].trackTitle}
 				trackAuthor={tracks[0].trackAuthor}
 				trackAlbum={tracks[0].trackAlbum}
@@ -25,7 +34,7 @@ export function Playlist() {
 				titleLink={tracks[0].titleLink}
 				authorLink={tracks[0].authorLink}
 				albumLink={tracks[0].albumLink}
-			/>
-		</div>
+			/>}
+		</S.Playlist>
 	)
 }

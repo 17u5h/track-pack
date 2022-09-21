@@ -1,5 +1,5 @@
 import React from 'react'
-import {SvgImg} from "./SvgImg";
+import * as S from "../styles";
 
 type propsType = {
 	authorLink: string
@@ -10,16 +10,18 @@ type propsType = {
 
 export function TrackPlayContain(props: propsType) {
 	return (
-		<div className='track-play__contain'>
-			<div className={'track-play__image'}>
-				<SvgImg className={'track-play__svg'} href={'../img/icon/sprite.svg#icon-note'}/>
-			</div>
-			<div className={'track-play__author'}>
-				<a className={'track-play__author-link'} href={props.authorLink}>{props.songName}</a>
-			</div>
-			<div className={'track-play__album'}>
-				<a className={'track-play__album-link'} href={props.albumLink}>{props.songAuthor}</a>
-			</div>
-		</div>
+		<S.TrackPlayContain>
+			<S.TrackPlayImage>
+				<svg>
+					<use href={'../img/icon/sprite.svg#icon-note'}/>
+				</svg>
+			</S.TrackPlayImage>
+			<S.TrackPlayAuthor>
+				<a href={props.authorLink}>{props.songName}</a>
+			</S.TrackPlayAuthor>
+			<S.TrackPlayAlbum>
+				<a href={props.albumLink}>{props.songAuthor}</a>
+			</S.TrackPlayAlbum>
+		</S.TrackPlayContain>
 	)
 }

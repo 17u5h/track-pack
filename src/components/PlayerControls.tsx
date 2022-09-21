@@ -1,37 +1,35 @@
 import React from 'react'
-import {PlayerButton} from "./PlayerButton";
+import * as S from "../styles";
 
 export function PlayerControls() {
-	const buttonTypes = [{
-		id: 1,
-		type: 'prev',
-		additionalClassName: ''
-	},{
-		id: 2,
-		type: 'play',
-		additionalClassName: '_btn'
-	},{
-		id: 3,
-		type: 'next',
-		additionalClassName: ''
-	},{
-		id: 4,
-		type: 'repeat',
-		additionalClassName: '_btn-icon'
-	},{
-		id: 5,
-		type: 'shuffle',
-		additionalClassName: '_btn-icon'
-	}]
 
 	return (
-		<div className='player__controls'>
-			{buttonTypes.map(el => (
-				<PlayerButton key={el.id}
-											additionalClassName={el.additionalClassName}
-											buttonType={el.type}
-				/>
-			))}
-		</div>
+		<S.PlayerControls>
+			<S.PlayerButtonPrev>
+				<svg>
+					<use href={'../img/icon/sprite.svg#icon-prev'}/>
+				</svg>
+			</S.PlayerButtonPrev>
+			<S.PlayerButtonPlay>
+				<svg>
+					<use href={'../img/icon/sprite.svg#icon-play'}/>
+				</svg>
+			</S.PlayerButtonPlay>
+			<S.PlayerButtonNext>
+				<svg>
+					<use href={'../img/icon/sprite.svg#icon-next'}/>
+				</svg>
+			</S.PlayerButtonNext>
+			<S.PlayerButtonRepeat>
+				<svg>
+					<use href={'../img/icon/sprite.svg#icon-repeat'}/>
+				</svg>
+			</S.PlayerButtonRepeat>
+			<S.PlayerButtonShuffle>
+				<svg>
+					<use href={'../img/icon/sprite.svg#icon-shuffle'}/>
+				</svg>
+			</S.PlayerButtonShuffle>
+		</S.PlayerControls>
 	)
 }

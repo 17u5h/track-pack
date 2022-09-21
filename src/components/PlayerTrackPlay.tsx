@@ -1,6 +1,7 @@
 import React from 'react'
 import {TrackPlayContain} from "./TrackPlayContain";
 import {TrackPlayLikeDislike} from "./TrackPlayLikeDislike";
+import * as S from "../styles";
 
 export function PlayerTrackPlay() {
 	const trackInformation = {
@@ -10,7 +11,7 @@ export function PlayerTrackPlay() {
 		songAuthor: 'Баста'
 	}
 	return (
-		<div className='player__track-play track-play'>
+		<S.TrackPlay>
 			<TrackPlayContain
 				authorLink={trackInformation.authorLink}
 				albumLink={trackInformation.albumLink}
@@ -18,6 +19,6 @@ export function PlayerTrackPlay() {
 				songAuthor={trackInformation.songAuthor}
 			/>
 			<TrackPlayLikeDislike/>
-		</div>
+		</S.TrackPlay>
 	)
 }

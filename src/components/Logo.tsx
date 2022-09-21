@@ -1,14 +1,11 @@
 import React from "react";
+import * as S from "../styles";
 
-type logoProps = {
-	divClassName: string
-	imgClassName: string
-}
 
-export function Logo(props: logoProps) {
+export function Logo() {
 	return (
-		<div className={props.divClassName}>
-			<img className={props.imgClassName} src="img/logo.png" alt="logo"/>
-		</div>
+		<S.Logo>
+			<img src="./logo.png" alt="logo"/>
+		</S.Logo>
 	)
 }
