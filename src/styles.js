@@ -444,6 +444,7 @@ export const SideBarPersonal = styled.div`
   align-items: center;
   justify-content: flex-end;
   padding: 12px 0 15px 0;
+	gap: 10px;
 
   p {
     font-style: normal;
@@ -451,7 +452,6 @@ export const SideBarPersonal = styled.div`
     font-size: 16px;
     line-height: 24px;
     color: #FFFFFF;
-    margin-right: 16px;
   }
 `
 

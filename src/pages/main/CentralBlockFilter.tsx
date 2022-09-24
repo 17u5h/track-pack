@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {PopUpAuthors, PopUpGenre, PopUpYears} from "./PopUpFiltered";
-import * as S from "../styles";
+import * as S from "../../styles";
 
 
 const filteredAuthors = ['30 seconds to Mars', 'Arctic Monkeys', 'Blink 182', 'Dire Straits', 'Foo fighters', 'Green Day', "Guns 'n Roses", 'Metallica', 'The Offspring']

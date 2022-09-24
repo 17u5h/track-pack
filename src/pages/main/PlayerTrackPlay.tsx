@@ -1,7 +1,7 @@
 import React from 'react'
 import {TrackPlayContain} from "./TrackPlayContain";
 import {TrackPlayLikeDislike} from "./TrackPlayLikeDislike";
-import * as S from "../styles";
+import * as S from "../../styles";
 
 export function PlayerTrackPlay() {
 	const trackInformation = {

@@ -2,7 +2,7 @@ import React from 'react'
 import {PlayerControls} from "./PlayerControls";
 import {PlayerTrackPlay} from "./PlayerTrackPlay";
 import {BarVolumeBlock} from "./BarVolumeBlock";
-import * as S from "../styles";
+import * as S from "../../styles";
 
 export function Bar() {
 	return (
