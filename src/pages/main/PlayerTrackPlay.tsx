@@ -1,14 +1,14 @@
 import React from 'react'
 import {TrackPlayContain} from "./TrackPlayContain";
 import {TrackPlayLikeDislike} from "./TrackPlayLikeDislike";
-import * as S from "../styles";
+import * as S from "../../styles";
 
 export function PlayerTrackPlay() {
 	const trackInformation = {
 		authorLink: 'https://',
 		albumLink: 'https://',
-		songName: 'Ты та...',
-		songAuthor: 'Баста'
+		songName: 'Bicycle Race',
+		songAuthor: 'Queen'
 	}
 	return (
 		<S.TrackPlay>

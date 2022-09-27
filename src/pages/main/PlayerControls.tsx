@@ -1,10 +1,11 @@
 import React from 'react'
-import * as S from "../styles";
+import * as S from "../../styles";
 
 export function PlayerControls() {
 
 	return (
 		<S.PlayerControls>
+
 			<S.PlayerButtonPrev>
 				<svg>
 					<use href={'../img/icon/sprite.svg#icon-prev'}/>

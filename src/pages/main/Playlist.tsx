@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {PlaylistItem} from "./PlaylistItem";
-import * as S from "../styles";
+import * as S from "../../styles";
 
 const tracks = [
 	{
