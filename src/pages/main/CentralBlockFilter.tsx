@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import {PopUpAuthors, PopUpGenre, PopUpYears} from "./PopUpFiltered";
+import {PopUp} from "./PopUpFiltered";
 import * as S from "../../styles";
 
 
@@ -24,14 +24,20 @@ export function CentralBlockFilter() {
 		<S.CentralBlockFilter>
 			<S.FilterTitle>Искать по:</S.FilterTitle>
 
-			<S.FilterButton onClick={() => togglePopUp('author')}>исполнителю</S.FilterButton>
-			{whoActive === 'author' && <PopUpAuthors>{filteredAuthors}</PopUpAuthors>}
+			<S.FilterContainer>
+				<S.FilterButton onClick={() => togglePopUp('author')}>исполнителю</S.FilterButton>
+				{whoActive === 'author' && <PopUp >{filteredAuthors}</PopUp>}
+			</S.FilterContainer>
 
-			<S.FilterButton onClick={() => togglePopUp('year')}>году выпуска</S.FilterButton>
-			{whoActive === 'year' && <PopUpYears>{filteredByYears}</PopUpYears>}
+			<S.FilterContainer>
+				<S.FilterButton onClick={() => togglePopUp('year')}>году выпуска</S.FilterButton>
+				{whoActive === 'year' && <PopUp >{filteredByYears}</PopUp>}
+			</S.FilterContainer>
 
-			<S.FilterButton onClick={() => togglePopUp('genre')}>жанру</S.FilterButton>
-			{whoActive === 'genre' && <PopUpGenre>{filteredByGenre}</PopUpGenre>}
+			<S.FilterContainer>
+				<S.FilterButton onClick={() => togglePopUp('genre')}>жанру</S.FilterButton>
+				{whoActive === 'genre' && <PopUp >{filteredByGenre}</PopUp>}
+			</S.FilterContainer>
 
 		</S.CentralBlockFilter>
 	)

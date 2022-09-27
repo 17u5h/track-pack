@@ -1,5 +1,4 @@
-import React, {useState} from 'react'
-import {GlobalStyle} from "../../styles";
+import React from 'react'
 import {LoginBackground} from "./styles";
 import * as S from "./styles"
 import {Link} from "react-router-dom";
@@ -14,7 +13,6 @@ export function Login(){
   }
   return(
     <>
-      <GlobalStyle/>
       <LoginBackground/>
       <S.Login>
         <S.Logo/>

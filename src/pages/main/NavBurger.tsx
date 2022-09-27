@@ -2,11 +2,11 @@ import React from "react";
 import * as S from "../../styles";
 
 
-type props = {
+type Props = {
 	onClick: () => void
 }
 
-export function NavBurger(props: props) {
+export function NavBurger(props: Props) {
 	return (
 		<S.NavBurger onClick={props.onClick}>
 			<S.BurgerLine/>

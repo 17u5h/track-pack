@@ -1,28 +1,17 @@
 import React from 'react'
 import * as S from "../../styles";
 
-type props = {
+type Props = {
 	children: string[]
+
 }
 
-export function PopUpAuthors({children}: props) {
+export function PopUp({children}: Props) {
 	return (
-		<S.PopUp>
+		<S.PopUp >
 			{children.map((song, i) => (
 				<p key={i}>{song}</p>
 			))}
 		</S.PopUp>
 	)
-}
-
-export function PopUpYears({children}: props) {
-	return <S.PopUpMoved240>{children.map((song, i) => (
-		<p key={i}>{song}</p>
-	))}</S.PopUpMoved240>
-}
-
-export function PopUpGenre({children}: props) {
-	return <S.PopUpMoved390>{children.map((song, i) => (
-		<p key={i}>{song}</p>
-	))}</S.PopUpMoved390>
 }

@@ -7,8 +7,8 @@ export function PlayerTrackPlay() {
 	const trackInformation = {
 		authorLink: 'https://',
 		albumLink: 'https://',
-		songName: 'Ты та...',
-		songAuthor: 'Баста'
+		songName: 'Bicycle Race',
+		songAuthor: 'Queen'
 	}
 	return (
 		<S.TrackPlay>

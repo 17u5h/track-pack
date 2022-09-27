@@ -197,6 +197,14 @@ export const FilterTitle = styled.div`
   margin-right: 15px;
 `
 
+export const FilterContainer = styled.div`
+	position: relative;	
+	
+  :not(:last-child) {
+    margin-right: 10px;
+  }
+`
+
 export const FilterButton = styled.button`
   font-style: normal;
   font-weight: 400;
@@ -208,11 +216,7 @@ export const FilterButton = styled.button`
   border-radius: 60px;
   padding: 6px 20px;
   user-select: none;
-
-  :not(:last-child) {
-    margin-right: 10px;
-  }
-
+	
   :hover {
     border-color: #D9B6FF;
     color: #D9B6FF;
@@ -227,7 +231,6 @@ export const FilterButton = styled.button`
 export const PopUp = styled.div`
   position: absolute;
   top: 50px;
-  left: 90px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -272,12 +275,6 @@ export const PopUp = styled.div`
       text-decoration: underline;
     }
   }
-`
-export const PopUpMoved240 = styled(PopUp)`
-  left: 240px;
-`
-export const PopUpMoved390 = styled(PopUp)`
-  left: 390px;
 `
 
 export const PlayListTitle = styled.div`

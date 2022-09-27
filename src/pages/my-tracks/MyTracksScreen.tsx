@@ -3,6 +3,6 @@ import {GlobalStyle} from "../../globalStyles";
 
 export function MyTracksScreen(){
   return(
-    <GlobalStyle/>
+    <div></div>
   )
 }

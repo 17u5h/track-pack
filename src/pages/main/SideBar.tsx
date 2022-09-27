@@ -2,12 +2,12 @@ import React from 'react'
 import {SideBarBlock} from "./SideBarBlock";
 import * as S from "../../styles";
 
-type props = {
+type Props = {
 	personalName: string
 	imgSrc: string[]
 }
 
-export function SideBar(props: props) {
+export function SideBar(props: Props) {
 	return (
 		<S.SideBar>
 			<S.SideBarPersonal>

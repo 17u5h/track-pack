@@ -3,6 +3,6 @@ import {GlobalStyle} from "../../globalStyles";
 
 export function SelectionScreen(){
   return(
-    <GlobalStyle/>
+    <div></div>
   )
 }

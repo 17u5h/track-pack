@@ -1,14 +1,14 @@
 import React from 'react'
 import * as S from "../../styles";
 
-type propsType = {
+type Props = {
 	authorLink: string
 	albumLink: string
 	songName: string
 	songAuthor: string
 }
 
-export function TrackPlayContain(props: propsType) {
+export function TrackPlayContain(props: Props) {
 	return (
 		<S.TrackPlayContain>
 			<S.TrackPlayImage>

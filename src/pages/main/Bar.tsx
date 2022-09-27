@@ -8,6 +8,7 @@ export function Bar() {
 	return (
 		<S.Bar>
 			<S.BarContainer>
+				<audio controls loop src="./Queen - Bicycle Race.mp3"></audio>
 				<S.BarPlayerProgress/>
 				<S.PlayerBlock>
 					<S.PlayerContainer>

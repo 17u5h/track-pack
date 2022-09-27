@@ -2,12 +2,12 @@ import React from 'react'
 import * as S from "../../styles";
 import {Link} from "react-router-dom";
 
-type props = {
+type Props = {
 
 	imgSrc: string
 }
 
-export function SideBarItem(props: props) {
+export function SideBarItem(props: Props) {
 	return (
 		<S.SideBarItem>
 			<Link to={'/selection'}>
