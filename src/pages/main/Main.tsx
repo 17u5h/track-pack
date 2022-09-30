@@ -1,5 +1,5 @@
 import React from 'react'
-import {Nav} from "./Nav";
+import {Nav} from "../../components/nav/Nav";
 import {CentralBlock} from "./CentralBlock";
 import {SideBar} from "./SideBar";
 import * as S from "../../styles";

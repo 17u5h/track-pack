@@ -10,7 +10,7 @@ type Props = {
 export function SideBarItem(props: Props) {
 	return (
 		<S.SideBarItem>
-			<Link to={'/selection'}>
+			<Link to={'/collection'}>
 				<img src={props.imgSrc} alt="day's playlist"/>
 			</Link>
 		</S.SideBarItem>

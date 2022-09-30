@@ -92,7 +92,7 @@ export const NavBurger = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-	cursor: pointer;
+  cursor: pointer;
 `
 
 export const BurgerLine = styled.span`
@@ -121,6 +121,10 @@ export const NavMenuList = styled.ul`
       line-height: 24px;
     }
   }
+`
+
+export const ButtonToggleTheme = styled.li`
+
 `
 
 export const CentralBlock = styled.div`
@@ -198,8 +202,8 @@ export const FilterTitle = styled.div`
 `
 
 export const FilterContainer = styled.div`
-	position: relative;	
-	
+  position: relative;
+
   :not(:last-child) {
     margin-right: 10px;
   }
@@ -216,7 +220,7 @@ export const FilterButton = styled.button`
   border-radius: 60px;
   padding: 6px 20px;
   user-select: none;
-	
+
   :hover {
     border-color: #D9B6FF;
     color: #D9B6FF;
@@ -441,7 +445,7 @@ export const SideBarPersonal = styled.div`
   align-items: center;
   justify-content: flex-end;
   padding: 12px 0 15px 0;
-	gap: 10px;
+  gap: 10px;
 
   p {
     font-style: normal;
@@ -508,6 +512,7 @@ export const BarPlayerProgress = styled.div`
   width: 100%;
   height: 5px;
   background: #2E2E2E;
+	cursor: pointer;
 `
 
 export const PlayerBlock = styled.div`
@@ -542,7 +547,7 @@ export const PlayerButtonPrev = styled(PlayerButton)`
     height: 14px;
   }
 `
-export const PlayerButtonPlay = styled(PlayerButton)`
+export const PlayerButtonPlayPause = styled(PlayerButton)`
   margin-right: 23px;
 
   svg {
