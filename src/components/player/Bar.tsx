@@ -17,8 +17,10 @@ export function Bar() {
 		if (audio.current === null) return
 
 		const setAudioData = () => {
-			if (audio.current) {setDuration(audio.current.duration)
-			 setCurrentTime(audio.current.currentTime)}
+			if (audio.current) {
+				setDuration(audio.current.duration)
+				setCurrentTime(audio.current.currentTime)
+			}
 		}
 
 		const setAudioTime = () => {
