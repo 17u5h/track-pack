@@ -17,8 +17,8 @@ export function Bar() {
 		if (audio.current === null) return
 
 		const setAudioData = () => {
-			if (audio.current?.duration) setDuration(audio.current.duration)
-			if (audio.current?.currentTime) setCurrentTime(audio.current.currentTime)
+			if (audio.current) {setDuration(audio.current.duration)
+			 setCurrentTime(audio.current.currentTime)}
 		}
 
 		const setAudioTime = () => {
@@ -38,8 +38,8 @@ export function Bar() {
 			setClickedTime(0)
 		}
 		return () => {
-			if (audio.current) audio.current.removeEventListener('loadeddata', setAudioData)
-			if (audio.current) audio.current.removeEventListener('timeupdate', setAudioTime)
+			audio.current?.removeEventListener('loadeddata', setAudioData)
+			audio.current?.removeEventListener('timeupdate', setAudioTime)
 		}
 	})
 
