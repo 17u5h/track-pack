@@ -11,7 +11,6 @@ export function BarPlayerProgress(props: Props) {
 	const {currentTime, duration, onTimeUpdate} = props
 	const currentPercentage = (currentTime / duration) * 100
 	const barRef = useRef<HTMLDivElement>(null)
-	console.log(barRef)
 
 	function calcClickedTime(event: MouseEvent) {
 		const clickXPositionInPage = event.pageX
@@ -26,6 +25,7 @@ export function BarPlayerProgress(props: Props) {
 		onTimeUpdate(calcClickedTime(event))
 
 		const updateTimeOnMouseMove = (moveEvent: MouseEvent) => {
+
 			onTimeUpdate(calcClickedTime(moveEvent))
 		}
 
@@ -35,9 +35,13 @@ export function BarPlayerProgress(props: Props) {
 		})
 	}
 
+	function setBarProgress() {
+		return {background: `linear-gradient(to right, #D9D9D9 ${currentPercentage}%, #2E2E2E 0`}
+	}
+
 	return (
 		<S.BarPlayerProgress ref={barRef}
-												 style={{background: `linear-gradient(to right, #D9D9D9 ${currentPercentage}%, #2E2E2E 0`}}
+												 style={setBarProgress()}
 												 onMouseDown={(event: MouseEvent) => handleTimeDrag(event)}>
 
 		</S.BarPlayerProgress>

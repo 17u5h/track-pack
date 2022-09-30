@@ -123,6 +123,10 @@ export const NavMenuList = styled.ul`
   }
 `
 
+export const ButtonToggleTheme = styled.li`
+
+`
+
 export const CentralBlock = styled.div`
   width: auto;
   flex-grow: 3;

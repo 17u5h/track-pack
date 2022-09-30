@@ -14,14 +14,17 @@ export function Bar() {
 	const [clickedTime, setClickedTime] = useState(0)
 
 	useEffect(() => {
-		if (audio.current === null) throw new Error('не удалось получить HTMLAudioElement')
+		if (audio.current === null) return
 
 		const setAudioData = () => {
-			setDuration(audio.current!.duration)
-			setCurrentTime(audio.current!.currentTime)
+			if (audio.current?.duration) setDuration(audio.current.duration)
+			if (audio.current?.currentTime) setCurrentTime(audio.current.currentTime)
 		}
 
-		const setAudioTime = () => setCurrentTime(audio.current!.currentTime)
+		const setAudioTime = () => {
+			if (audio.current?.currentTime)
+				setCurrentTime(audio.current.currentTime)
+		}
 
 		audio.current.addEventListener('loadeddata', setAudioData)
 		audio.current.addEventListener('timeupdate', setAudioTime)
@@ -35,8 +38,8 @@ export function Bar() {
 			setClickedTime(0)
 		}
 		return () => {
-			audio.current!.removeEventListener('loadeddata', setAudioData)
-			audio.current!.removeEventListener('timeupdate', setAudioTime)
+			if (audio.current) audio.current.removeEventListener('loadeddata', setAudioData)
+			if (audio.current) audio.current.removeEventListener('timeupdate', setAudioTime)
 		}
 	})
 

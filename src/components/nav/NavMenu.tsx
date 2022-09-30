@@ -10,6 +10,7 @@ export function NavMenu() {
 				<NavMenuLink>Главное</NavMenuLink>
 				<Link to={'/my-tracks'}><NavMenuLink>Мой плейлист</NavMenuLink></Link>
 				<NavMenuLink>Войти</NavMenuLink>
+
 			</S.NavMenuList>
 		</S.NavMenu>
 	)
