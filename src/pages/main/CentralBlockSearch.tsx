@@ -1,9 +1,11 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import * as S from "../../styles";
+import {ThemeContext} from "../../contexts/theme";
 
 export function CentralBlockSearch() {
+	const {themeSwitcher} = useContext(ThemeContext)
 	return (
-		<S.CentralBlockSearch>
+		<S.CentralBlockSearch dark={themeSwitcher}>
 			<svg>
 				<use href={'../img/icon/sprite.svg#icon-search'}/>
 			</svg>

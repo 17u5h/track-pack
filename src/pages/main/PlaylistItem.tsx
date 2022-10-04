@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import * as S from "../../styles"
+import {ThemeContext} from "../../contexts/theme";
 
 
 type itemProps = {
@@ -14,33 +15,35 @@ type itemProps = {
 }
 
 export function PlaylistItem(props: itemProps) {
+	const {themeSwitcher} = useContext(ThemeContext)
+
 	return (
 		<S.PlaylistItem>
 			<S.PlaylistTrack>
 				<S.TrackTitle>
-					<S.TrackTitleImage>
+					<S.TrackTitleImage dark={themeSwitcher}>
 						<svg>
 							<use href={props.imageLink}/>
 						</svg>
 					</S.TrackTitleImage>
-					<S.TrackTitleText>
+					<S.TrackTitleText dark={themeSwitcher}>
 						<a href={props.titleLink}>
 							{props.trackTitle}
 						</a>
 						<span></span>
 					</S.TrackTitleText>
 				</S.TrackTitle>
-				<S.TrackAuthor>
+				<S.TrackAuthor dark={themeSwitcher}>
 					<a href={props.authorLink}>
 						{props.trackAuthor}
 					</a>
 				</S.TrackAuthor>
-				<S.TrackAlbum>
+				<S.TrackAlbum dark={themeSwitcher}>
 					<a href={props.albumLink}>
 						{props.trackAlbum}
 					</a>
 				</S.TrackAlbum>
-				<S.TrackTime>
+				<S.TrackTime dark={themeSwitcher}>
 					<svg>
 						<use href={'../img/icon/sprite.svg#icon-like'}/>
 					</svg>

@@ -1,5 +1,6 @@
-import React, {useRef} from 'react'
+import React, {useContext, useRef} from 'react'
 import * as S from '../../styles'
+import {ThemeContext} from "../../contexts/theme";
 
 type Props = {
 	currentTime: number
@@ -13,9 +14,10 @@ export function BarPlayerProgress(props: Props) {
 	const barRef = useRef<HTMLDivElement>(null)
 
 	function calcClickedTime(event: MouseEvent) {
+		if (!barRef.current) return 0
 		const clickXPositionInPage = event.pageX
-		const barStart = barRef.current!.clientLeft
-		const barWidth = barRef.current!.clientWidth
+		const barStart = barRef.current.clientLeft
+		const barWidth = barRef.current.clientWidth
 		const clickXPositionInBar = clickXPositionInPage - barStart
 		const timePerPixel = duration / barWidth
 		return timePerPixel * clickXPositionInBar
@@ -36,13 +38,20 @@ export function BarPlayerProgress(props: Props) {
 	}
 
 	function setBarProgress() {
-		return {background: `linear-gradient(to right, #D9D9D9 ${currentPercentage}%, #2E2E2E 0`}
+		if (themeSwitcher) {
+			return {background: `linear-gradient(to right, #D9D9D9 ${currentPercentage}%, #2E2E2E 0`}
+		} else {
+			return {background: `linear-gradient(to right, #2E2E2E ${currentPercentage}%, #D9D9D9 0`}
+		}
 	}
+
+	const {themeSwitcher} = useContext(ThemeContext)
 
 	return (
 		<S.BarPlayerProgress ref={barRef}
 												 style={setBarProgress()}
-												 onMouseDown={(event: MouseEvent) => handleTimeDrag(event)}>
+												 onMouseDown={(event: MouseEvent) => handleTimeDrag(event)}
+												 dark={themeSwitcher}>
 
 		</S.BarPlayerProgress>
 	)
