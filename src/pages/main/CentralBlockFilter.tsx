@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import {PopUp} from "./PopUpFiltered";
 import * as S from "../../styles";
+import {ThemeContext} from "../../contexts/theme";
 
 
 const filteredAuthors = ['30 seconds to Mars', 'Arctic Monkeys', 'Blink 182', 'Dire Straits', 'Foo fighters', 'Green Day', "Guns 'n Roses", 'Metallica', 'The Offspring']
@@ -20,22 +21,24 @@ export function CentralBlockFilter() {
 		setActive(prevName => prevName === name ? 'none' : name)
 	}
 
+	const {themeSwitcher} = useContext(ThemeContext)
+
 	return (
 		<S.CentralBlockFilter>
-			<S.FilterTitle>Искать по:</S.FilterTitle>
+			<S.FilterTitle dark={themeSwitcher}>Искать по:</S.FilterTitle>
 
 			<S.FilterContainer>
-				<S.FilterButton onClick={() => togglePopUp('author')}>исполнителю</S.FilterButton>
+				<S.FilterButton onClick={() => togglePopUp('author') } dark={themeSwitcher}>исполнителю</S.FilterButton>
 				{whoActive === 'author' && <PopUp >{filteredAuthors}</PopUp>}
 			</S.FilterContainer>
 
 			<S.FilterContainer>
-				<S.FilterButton onClick={() => togglePopUp('year')}>году выпуска</S.FilterButton>
+				<S.FilterButton onClick={() => togglePopUp('year')} dark={themeSwitcher}>году выпуска</S.FilterButton>
 				{whoActive === 'year' && <PopUp >{filteredByYears}</PopUp>}
 			</S.FilterContainer>
 
 			<S.FilterContainer>
-				<S.FilterButton onClick={() => togglePopUp('genre')}>жанру</S.FilterButton>
+				<S.FilterButton onClick={() => togglePopUp('genre')} dark={themeSwitcher}>жанру</S.FilterButton>
 				{whoActive === 'genre' && <PopUp >{filteredByGenre}</PopUp>}
 			</S.FilterContainer>
 

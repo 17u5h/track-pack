@@ -1,9 +1,10 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useContext, useEffect, useRef, useState} from 'react'
 import {PlayerControls} from "./PlayerControls";
 import {PlayerTrackPlay} from "./PlayerTrackPlay";
 import {BarVolumeBlock} from "./BarVolumeBlock";
 import * as S from "../../styles";
 import {BarPlayerProgress} from "./BarPlayerProgress";
+import {ThemeContext} from "../../contexts/theme";
 
 export function Bar() {
 	const audio = useRef<HTMLAudioElement>(null)
@@ -45,8 +46,10 @@ export function Bar() {
 		}
 	})
 
+	const {themeSwitcher} = useContext(ThemeContext)
+
 	return (
-		<S.Bar>
+		<S.Bar dark={themeSwitcher}>
 			<S.BarContainer>
 				<audio ref={audio}>
 					<source src="./Queen - Bicycle Race.mp3"/>
