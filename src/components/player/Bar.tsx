@@ -1,12 +1,15 @@
-import React, {useContext, useEffect, useRef, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import {PlayerControls} from "./PlayerControls";
 import {PlayerTrackPlay} from "./PlayerTrackPlay";
 import {BarVolumeBlock} from "./BarVolumeBlock";
 import * as S from "../../styles";
 import {BarPlayerProgress} from "./BarPlayerProgress";
-import {ThemeContext} from "../../contexts/theme";
+import {useSelector} from "react-redux";
+import {themeSelector} from "../../store/selectors/themeSelector";
 
 export function Bar() {
+	const themeSwitcher = useSelector(themeSelector)
+
 	const audio = useRef<HTMLAudioElement>(null)
 
 	const [duration, setDuration] = useState(0)
@@ -46,10 +49,10 @@ export function Bar() {
 		}
 	})
 
-	const {themeSwitcher} = useContext(ThemeContext)
+
 
 	return (
-		<S.Bar dark={themeSwitcher}>
+		<S.Bar isDarkTheme={themeSwitcher}>
 			<S.BarContainer>
 				<audio ref={audio}>
 					<source src="./Queen - Bicycle Race.mp3"/>

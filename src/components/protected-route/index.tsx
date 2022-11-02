@@ -1,14 +1,13 @@
 import React from "react";
 import {Navigate, Outlet} from "react-router-dom";
 
-type propTypes = {
+type Props = {
 	redirectPath: string
 	isAllowed: boolean
 }
 
-export function ProtectedRoute({redirectPath = "/", isAllowed}: propTypes) {
+export function ProtectedRoute({redirectPath = "/", isAllowed}: Props) {
 
-	console.log(isAllowed)
 	if (!isAllowed) {
 		return <Navigate to={redirectPath} replace={true}/>
 	}

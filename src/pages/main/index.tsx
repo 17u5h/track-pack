@@ -1,25 +1,20 @@
-import React, {useState} from 'react'
+import React from 'react'
 import * as S from "../../styles"
 import {Main} from "./Main"
 import {Bar} from "../../components/player/Bar"
-import {ThemeContext} from "../../contexts/theme";
+import {useSelector} from "react-redux";
+import {themeSelector} from "../../store/selectors/themeSelector";
 
-export function MainScreen(){
-	const [themeSwitcher, setThemeSwitcher] = useState(true)
+export function MainScreen() {
 
-	function toggleTheme(){setThemeSwitcher(!themeSwitcher)}
+	const themeSwitcher = useSelector(themeSelector)
 
-
-
-  return(
-    <ThemeContext.Provider value={{themeSwitcher:themeSwitcher, toggleTheme}}>
-
-      <S.Wrapper dark={themeSwitcher}>
-      	<S.Container dark={themeSwitcher}>
-      		<Main/>
-      		<Bar/>
-      	</S.Container>
-      </S.Wrapper>
-    </ThemeContext.Provider>
-  )
+	return (
+			<S.Wrapper isDarkTheme={themeSwitcher}>
+				<S.Container isDarkTheme={themeSwitcher}>
+					<Main/>
+					<Bar/>
+				</S.Container>
+			</S.Wrapper>
+	)
 }

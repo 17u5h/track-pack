@@ -1,6 +1,7 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import * as S from "../../styles"
-import {ThemeContext} from "../../contexts/theme";
+import {useSelector} from "react-redux";
+import {themeSelector} from "../../store/selectors/themeSelector";
 
 
 type itemProps = {
@@ -15,35 +16,35 @@ type itemProps = {
 }
 
 export function PlaylistItem(props: itemProps) {
-	const {themeSwitcher} = useContext(ThemeContext)
+	const themeSwitcher = useSelector(themeSelector)
 
 	return (
 		<S.PlaylistItem>
 			<S.PlaylistTrack>
 				<S.TrackTitle>
-					<S.TrackTitleImage dark={themeSwitcher}>
+					<S.TrackTitleImage isDarkTheme={themeSwitcher}>
 						<svg>
 							<use href={props.imageLink}/>
 						</svg>
 					</S.TrackTitleImage>
-					<S.TrackTitleText dark={themeSwitcher}>
+					<S.TrackTitleText isDarkTheme={themeSwitcher}>
 						<a href={props.titleLink}>
 							{props.trackTitle}
 						</a>
 						<span></span>
 					</S.TrackTitleText>
 				</S.TrackTitle>
-				<S.TrackAuthor dark={themeSwitcher}>
+				<S.TrackAuthor isDarkTheme={themeSwitcher}>
 					<a href={props.authorLink}>
 						{props.trackAuthor}
 					</a>
 				</S.TrackAuthor>
-				<S.TrackAlbum dark={themeSwitcher}>
+				<S.TrackAlbum isDarkTheme={themeSwitcher}>
 					<a href={props.albumLink}>
 						{props.trackAlbum}
 					</a>
 				</S.TrackAlbum>
-				<S.TrackTime dark={themeSwitcher}>
+				<S.TrackTime isDarkTheme={themeSwitcher}>
 					<svg>
 						<use href={'../img/icon/sprite.svg#icon-like'}/>
 					</svg>

@@ -11,14 +11,15 @@ export const LoginBackground = createGlobalStyle`
 `
 
 export const Login = styled.div`
+	position: relative;
   background: #fff;
   width: 366px;
-  height: 440px;
+  height: 480px;
   border-radius: 12px;
   display: flex;
-  justify-content: space-around;
   flex-direction: column;
   align-items: center;
+	gap: 30px;
 
   input {
     width: 278px;
@@ -29,6 +30,7 @@ export const Login = styled.div`
     font-size: 24px;
     line-height: 24px;
     color: #313131;
+		
 
     ::placeholder {
       font-size: 18px;
@@ -55,15 +57,19 @@ export const EnterButton = styled.button`
   border: none;
   color: #fff;
   background-color: #580EA2;
-  margin: 30px 0 0 0;
-  transition: background-color .1s;
+  margin-top: 30px;
 
   :hover {
-    background-color: #AD61FF;
+    background-color: #3F007D;
   }
 
   :active {
-    transform: scale(0.98);
+    background-color: #1e053b;
+  }
+
+  :disabled {
+    background-color: #b4b3b3;
+
   }
 `
 export const RegisterButton = styled(EnterButton)`
@@ -73,7 +79,40 @@ export const RegisterButton = styled(EnterButton)`
   margin: 0 0 20px 0;
 
   :hover {
-    background-color: #D9B6FF;
+    background-color: #D0CECE;
+  }
+	:active{
+    background-color: #D9D9D9;
   }
 `
-
+export const LoginError = styled.div`
+  position: absolute;
+  margin-top: 50px;
+  color: #a21919;
+	font-weight: 600;
+`
+export const PasswordError = styled.div`
+  position: absolute;
+	margin-top: 70px;
+	color: #a21919;
+  font-weight: 600;
+`
+export const LoadingSpinner = styled.div`
+  position: absolute;
+  left: calc(50% - 40px);
+  top: calc(50% - 40px);
+  border: 8px solid #807bc9;
+  border-top: 8px solid #231bab;
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+  animation: spin 2s linear infinite;
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`
