@@ -13,7 +13,7 @@ export function MainScreen() {
 			<S.Wrapper isDarkTheme={themeSwitcher}>
 				<S.Container isDarkTheme={themeSwitcher}>
 					<Main/>
-					<Bar/>
+					{/*<Bar/>*/}
 				</S.Container>
 			</S.Wrapper>
 	)

@@ -10,9 +10,7 @@ type itemProps = {
 	trackAlbum?: string
 	trackTime?: string
 	imageLink: string
-	titleLink?: string
-	authorLink?: string
-	albumLink?: string
+	link?: string
 }
 
 export function PlaylistItem(props: itemProps) {
@@ -28,19 +26,19 @@ export function PlaylistItem(props: itemProps) {
 						</svg>
 					</S.TrackTitleImage>
 					<S.TrackTitleText isDarkTheme={themeSwitcher}>
-						<a href={props.titleLink}>
+						<a href={props.link}>
 							{props.trackTitle}
 						</a>
 						<span></span>
 					</S.TrackTitleText>
 				</S.TrackTitle>
 				<S.TrackAuthor isDarkTheme={themeSwitcher}>
-					<a href={props.authorLink}>
+					<a href={props.link}>
 						{props.trackAuthor}
 					</a>
 				</S.TrackAuthor>
 				<S.TrackAlbum isDarkTheme={themeSwitcher}>
-					<a href={props.albumLink}>
+					<a href={props.link}>
 						{props.trackAlbum}
 					</a>
 				</S.TrackAlbum>

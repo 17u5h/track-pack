@@ -3,7 +3,7 @@ import loginReducer from "./reducers/loginReducer";
 import thunk from "redux-thunk";
 import themeReducer from "./reducers/themeReducer";
 
-export const BASE_URL = 'http://51.250.95.23:8000'
+export const BASE_URL = 'https://painassasin.online'
 
 export const store = configureStore({
 	reducer: {

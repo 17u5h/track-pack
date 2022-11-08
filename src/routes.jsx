@@ -9,6 +9,7 @@ import {CollectionScreen} from "./pages/collection/CollectionScreen"
 import {Registration} from "./pages/login/registration";
 import {useSelector} from "react-redux";
 import {tokenSelector} from "./store/selectors/loginSelector";
+import {BarLayout} from "./components/BarLayout";
 
 export function AppRoutes() {
 	const token = useSelector(tokenSelector)
@@ -20,11 +21,13 @@ export function AppRoutes() {
 			<Routes>
 				<Route path="/" element={<Login/>}/>
 				<Route path="/registration" element={<Registration/>}/>
-				<Route element={<ProtectedRoute redirectPath={'/'} isAllowed={Boolean(token)}/>}>
-					<Route path="/main" element={<MainScreen/>}/>
-					<Route path="/my-tracks" element={<MyTracksScreen/>}/>
-					<Route path="/collection" element={<CollectionScreen/>}/>
-				</Route>
+					<Route element={<ProtectedRoute redirectPath={'/'} isAllowed={Boolean(token)}/>}>
+						<Route path="/" element={<BarLayout/>}>
+							<Route path="main" element={<MainScreen/>}/>
+							<Route path="my-tracks" element={<MyTracksScreen/>}/>
+							<Route path="collection" element={<CollectionScreen/>}/>
+						</Route>
+					</Route>
 
 				<Route path="*" element={<NotFound/>}/>
 			</Routes>

@@ -32,6 +32,7 @@ const light = {
 	$volumeColor: '#b1b1b1',
 }
 
+const heightOfOnePlaylistItem = 66;
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -360,12 +361,35 @@ export const PlaylistTitleIcon = styled.svg`
 export const Playlist = styled.div`
   display: flex;
   flex-direction: column;
+	height: 400px;
+	//height: ${(props) => `${props.numberOfItems * heightOfOnePlaylistItem + 200}px`};
   overflow-y: auto;
+	
+  &::-webkit-scrollbar {
+    background: #4B4949;
+    background-clip: content-box;
+    border-right: 4px solid transparent;
+    border-left: 28px solid transparent;
+    border-bottom: 4px solid transparent;
+    width: 38px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-clip: content-box;
+    border-right: 4px solid transparent;
+    border-left: 28px solid transparent;
+    border-bottom: 4px solid transparent;
+    background-color: #fff;
+    border-radius: 2px;
+  }
 `
 
 export const PlaylistItem = styled.div`
   width: 100%;
-  display: block;
   margin-bottom: 12px;
 `
 export const PlaylistTrack = styled.div`
@@ -383,8 +407,8 @@ export const TrackTitle = styled.div`
 `
 
 export const TrackTitleImage = styled.div`
-  width: 51px;
-  height: 51px;
+  width: 50px;
+  height: 50px;
   padding: 16px;
   background-color: ${(props) => (props.isDarkTheme ? `${dark.$backgroundTrackImage}` : `${light.$backgroundTrackImage}`)};
   display: flex;

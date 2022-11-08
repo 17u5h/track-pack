@@ -1,40 +1,51 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {PlaylistItem} from "./PlaylistItem";
 import * as S from "../../styles";
-
-const tracks = [
-	{
-		"id": "1",
-		"trackTitle": "Guilt",
-		"trackAuthor": "Nero",
-		"trackAlbum": "Welcome Reality",
-		"trackTime": "4:44",
-		"imageLink": "../img/icon/sprite.svg#icon-note",
-		"titleLink": "https://",
-		"authorLink": "https://",
-		"albumLink": "https://"
-	}]
-
+import {BASE_URL} from "../../store/store";
+import axios from "axios";
+import {Track} from "../../models/response/PlaylistAllTracks";
+import {secToMinConverter} from "../../lib/secToMinConverter";
 
 export function Playlist() {
 	const [isLoading, setIsLoading] = useState(true)
+	const [allTracks, setAllTracks] = useState<Track[]>([])
 
-	setTimeout(() => {
-		setIsLoading(false)
-	}, 500)
+	async function fetchAllTracks() {
+		try {
+			const {data} = await axios.get(`${BASE_URL}/catalog/track/all` )
+			setAllTracks(data)
+		} catch (e) {
+			console.log(e)
+		} finally {
+			setIsLoading(false)
+		}
+	}
+
+	useEffect(() => {
+		fetchAllTracks()
+	},[])
+
+	useEffect(() => {
+		if (!allTracks[0]) return
+		console.log(allTracks)
+	},[allTracks])
+
 
 	return (
-		<S.Playlist>
-			{!isLoading && <PlaylistItem
-				trackTitle={tracks[0].trackTitle}
-				trackAuthor={tracks[0].trackAuthor}
-				trackAlbum={tracks[0].trackAlbum}
-				trackTime={tracks[0].trackTime}
-				imageLink={tracks[0].imageLink}
-				titleLink={tracks[0].titleLink}
-				authorLink={tracks[0].authorLink}
-				albumLink={tracks[0].albumLink}
-			/>}
+		<S.Playlist numberOfItems={allTracks.length}>
+			{!isLoading && allTracks.map(el =>
+					<PlaylistItem
+						key={el.id}
+						trackTitle={el?.name}
+						trackAuthor={el?.author}
+						trackAlbum={el?.album}
+						trackTime={secToMinConverter(el?.duration_in_seconds)}
+						imageLink={el?.logo || ''}
+						link={el?.track_file}
+
+					/>
+				)
+			}
 		</S.Playlist>
 	)
 }
