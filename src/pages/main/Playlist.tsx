@@ -26,7 +26,7 @@ export function Playlist() {
 	},[])
 
 	useEffect(() => {
-		if (!allTracks[0]) return
+		if (!allTracks.at(0)) return
 		console.log(allTracks)
 	},[allTracks])
 
