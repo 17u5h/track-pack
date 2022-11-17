@@ -62,7 +62,8 @@ export function Login() {
 		setLoginLoading(true)
 		try {
 			await axios.post(`${BASE_URL}/user/login/`, user)
-			await dispatch(fetchCreateToken(user))
+			await dispatch(fetchCreateToken(user,''))
+			sessionStorage.setItem('userEmail', email)
 			setPasswordError('')
 			setLoginLoading(false)
 			navigate('/main')

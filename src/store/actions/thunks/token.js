@@ -8,11 +8,11 @@ import {BASE_URL} from "../../store";
 
 
 
-export const fetchCreateToken = (user) => async (dispatch) => {
+export const fetchCreateToken = (payload, isRefresh) => async (dispatch) => {
 	dispatch(fetchCreateTokenStarted())
 
 	try {
-		const {data} = await axios.post(`${BASE_URL}/user/token/`, user)
+		const {data} = await axios.post(`${BASE_URL}/user/token/${isRefresh}`, payload)
 		const accessToken = data.access
 		const refreshToken = data.refresh
 		document.cookie = `refreshToken = ${refreshToken}`

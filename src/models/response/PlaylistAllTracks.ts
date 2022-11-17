@@ -10,5 +10,6 @@ export interface Track {
 	duration_in_seconds: number,
 	logo?: string,
 	stared_user: User[],
-	track_file: string
+	track_file: string,
+	isLiked: boolean;
 }

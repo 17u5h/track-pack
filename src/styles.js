@@ -14,6 +14,7 @@ const dark = {
 	$barBackground: 'rgba(28, 28, 28, 0.5)',
 	$backgroundTrackImage: '#313131',
 	$volumeColor: '#fff',
+	$skeletonColor: '#313131',
 }
 
 const light = {
@@ -30,9 +31,9 @@ const light = {
 	$barBackground: 'rgba(255, 255, 255, 0.5)',
 	$backgroundTrackImage: '#f6f4f4',
 	$volumeColor: '#b1b1b1',
+	$skeletonColor: '#f5f5f5',
 }
 
-const heightOfOnePlaylistItem = 66;
 
 export const GlobalStyle = createGlobalStyle`
   * {
@@ -362,8 +363,8 @@ export const Playlist = styled.div`
   display: flex;
   flex-direction: column;
 	height: 400px;
-	//height: ${(props) => `${props.numberOfItems * heightOfOnePlaylistItem + 200}px`};
   overflow-y: auto;
+	padding-bottom: 150px;
 	
   &::-webkit-scrollbar {
     background: #4B4949;
@@ -388,13 +389,40 @@ export const Playlist = styled.div`
   }
 `
 
+export const PlaylistItemSkeleton = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 12px;
+`
+export const TrackTitleImageSkeleton = styled.div`
+	width: 50px;
+	height: 50px;
+	margin-right: 20px;
+	background-color: ${(props) => (props.isDarkTheme ? `${dark.$skeletonColor}` : `${light.$skeletonColor}`)};
+`
+export const TrackTitleSkeleton = styled(TrackTitleImageSkeleton)`
+	width: 260px;
+	height: 20px;
+  margin-right: 40px;
+`
+export const TrackAuthorSkeleton = styled(TrackTitleImageSkeleton)`
+	width: 220px;
+  height: 20px;
+  margin-right: 40px;
+`
+export const TrackAlbumSkeleton = styled(TrackTitleImageSkeleton)`
+	width: 160px;
+  height: 20px;
+`
+
 export const PlaylistItem = styled.div`
   width: 100%;
   margin-bottom: 12px;
 `
 export const PlaylistTrack = styled.div`
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 `
@@ -470,22 +498,39 @@ export const TrackAlbum = styled.div`
 `
 
 export const TrackTime = styled.div`
+	display: flex;
+	gap: 16px;
   svg {
     width: 14px;
     height: 12px;
-    margin-right: 17px;
+    
     fill: transparent;
+		cursor: pointer;
     stroke: ${(props) => (props.isDarkTheme ? `${dark.$textFade}` : `${light.$textFade}`)};
   }
 
   span {
-    font-style: normal;
-    font-weight: 400;
+    
     font-size: 16px;
     line-height: 24px;
     text-align: right;
     color: ${(props) => (props.isDarkTheme ? `${dark.$textFade}` : `${light.$textFade}`)};
   }
+`
+export const LoadingLikeSpinner = styled.div`
+	border: 2px solid #2E2E2E;
+	border-top: 2px solid #cccccc;
+	border-radius: 50%;
+	height: 14px;
+	width: 14px;
+	animation: spin 2s linear infinite;
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
 `
 
 export const SideBar = styled.div`
@@ -788,5 +833,4 @@ export const VolumeValue = styled.div`
       margin-top: -5px;
     }
   }
-  
 `

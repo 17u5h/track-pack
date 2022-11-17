@@ -91,7 +91,7 @@ export function Registration(){
 		try{
 			await axios.post(`${BASE_URL}/user/signup/`, user )
 			await axios.post(`${BASE_URL}/user/login/`, user)
-			await dispatch(fetchCreateToken(user))
+			await dispatch(fetchCreateToken(user, ''))
 			setLoginLoading(false)
 			navigate('/main')
 		}
