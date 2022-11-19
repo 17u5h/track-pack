@@ -27,21 +27,25 @@ import {LoadingLikeSpinner} from "../../styles";
 
 export function PlaylistItem(props) {
 	const themeSwitcher = useSelector(themeSelector)
-	const token = useSelector(tokenSelector)
-	const navigate = useNavigate()
-	const dispatch = useDispatch()
-	const [isLiked, setIsLiked] = useState(false)
+	const [isLiked = props.trackLiked, setIsLiked] = useState()
 	const [likeLoading, setLikeLoading] = useState(false)
 
 	injectStore(store)
 
-	async function moveTrackToFavorites(id){
+	async function toggleLikeDislikeTrack(id) {
 		setLikeLoading(true)
-		try{
-			const res = await $api.post(`${BASE_URL}/catalog/track/${id}/favorite/`, )
-			console.log(res)
-			if (res.status === 200) setIsLiked(!isLiked)
-		} catch (e){
+
+		try {
+			if (isLiked) {
+				const res = await $api.delete(`${BASE_URL}/catalog/track/${id}/favorite/`,)
+				console.log(res)
+				if (res.data.detail === 'User removed from track') setIsLiked(false)
+			} else {
+				const res = await $api.post(`${BASE_URL}/catalog/track/${id}/favorite/`)
+				console.log(res)
+				if (res.data.detail === "User added to track") setIsLiked(true)
+			}
+		} catch (e) {
 			console.log(e)
 		} finally {
 			setLikeLoading(false)
@@ -77,12 +81,12 @@ export function PlaylistItem(props) {
 				<S.TrackTime isDarkTheme={themeSwitcher}>
 
 					{likeLoading ? <S.LoadingLikeSpinner/> :
-					<svg onClick={()=>moveTrackToFavorites(props.id)}>
+						<svg onClick={() => toggleLikeDislikeTrack(props.id)}>
 
-						{props.trackLiked ? <use href={'../img/icon/sprite.svg#icon-dislike'}/>
-							: <use href={'../img/icon/sprite.svg#icon-like'}/>}
-						
-					</svg>}
+							{isLiked ? <use href={'../img/icon/sprite.svg#icon-dislike'}/>
+								: <use href={'../img/icon/sprite.svg#icon-like'}/>}
+
+						</svg>}
 					<span>
 						{props.trackTime}
 					</span>
