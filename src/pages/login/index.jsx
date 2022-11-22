@@ -61,7 +61,8 @@ export function Login() {
 		}
 		setLoginLoading(true)
 		try {
-			await axios.post(`${BASE_URL}/user/login/`, user)
+			const response = await axios.post(`${BASE_URL}/user/login/`, user)
+			sessionStorage.setItem('userName', response.data.username)
 			await dispatch(fetchCreateToken(user,''))
 			sessionStorage.setItem('userEmail', email)
 			setPasswordError('')
@@ -97,7 +98,7 @@ export function Login() {
 
 				{enterError && <S.PasswordError>{enterError}</S.PasswordError>}
 				<Link to='/main'><S.EnterButton disabled={!formValid} onClick={(event) => enterHandler(event)}>Войти</S.EnterButton></Link>
-				<Link to={'/registration'}><S.RegisterButton>Зарегистрироваться</S.RegisterButton></Link>
+				<Link to='/registration'><S.RegisterButton>Зарегистрироваться</S.RegisterButton></Link>
 
 				{loginLoading && <S.LoadingSpinner/>}
 			</S.Login>

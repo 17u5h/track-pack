@@ -15,6 +15,8 @@ const dark = {
 	$backgroundTrackImage: '#313131',
 	$volumeColor: '#fff',
 	$skeletonColor: '#313131',
+	$scrollbarColor: '#383838',
+	$scrollbarThumb: '#d2d2d2',
 }
 
 const light = {
@@ -32,6 +34,8 @@ const light = {
 	$backgroundTrackImage: '#f6f4f4',
 	$volumeColor: '#b1b1b1',
 	$skeletonColor: '#f5f5f5',
+	$scrollbarColor: '#dadada',
+	$scrollbarThumb: '#949494',
 }
 
 
@@ -367,7 +371,7 @@ export const Playlist = styled.div`
 	padding-bottom: 150px;
 	
   &::-webkit-scrollbar {
-    background: #4B4949;
+    background-color: ${(props) => (props.isDarkTheme ? `${dark.$scrollbarColor}` : `${light.$scrollbarColor}`)};
     background-clip: content-box;
     border-right: 4px solid transparent;
     border-left: 28px solid transparent;
@@ -384,7 +388,7 @@ export const Playlist = styled.div`
     border-right: 4px solid transparent;
     border-left: 28px solid transparent;
     border-bottom: 4px solid transparent;
-    background-color: #fff;
+    background-color: ${(props) => (props.isDarkTheme ? `${dark.$scrollbarThumb}` : `${light.$scrollbarThumb}`)};
     border-radius: 2px;
   }
 `
@@ -574,6 +578,7 @@ export const SideBarList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+	gap: 20px;
 `
 
 export const SideBarItem = styled.div`

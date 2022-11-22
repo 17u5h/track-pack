@@ -1,7 +1,6 @@
 import axios from "axios";
 import {BASE_URL} from "../store/store";
 import {getCookie} from "../lib/cookieReader";
-import {fetchCreateToken} from "../store/actions/thunks/token";
 import {fetchCreateTokenSuccess} from "../store/actions/creators/token";
 
 
@@ -37,7 +36,6 @@ $api.interceptors.response.use((config) => {
 			store.getState().dispatch(fetchCreateTokenSuccess(response.data.access))
 		} catch (e) {
 			console.log(e)
-			console.log(refreshToken)
 		}
 	}
 	throw error

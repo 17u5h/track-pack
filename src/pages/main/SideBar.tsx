@@ -6,7 +6,6 @@ import {themeSelector} from "../../store/selectors/themeSelector";
 
 type Props = {
 	personalName: string
-	imgSrc: string[]
 }
 
 export function SideBar(props: Props) {
@@ -17,7 +16,7 @@ export function SideBar(props: Props) {
 			<S.SideBarPersonal isDarkTheme={themeSwitcher}>
 				<p>{props.personalName}</p>
 				<S.PersonalAvatar/>
-				<SideBarBlock imgSrc={props.imgSrc}/>
+				<SideBarBlock/>
 			</S.SideBarPersonal>
 		</S.SideBar>
 	)

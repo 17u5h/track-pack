@@ -6,9 +6,12 @@ import * as S from "../../styles";
 import {BarPlayerProgress} from "./BarPlayerProgress";
 import {useSelector} from "react-redux";
 import {themeSelector} from "../../store/selectors/themeSelector";
+import {playingTrackSelector} from "../../store/selectors/playingTrackSelector";
 
 export function Bar() {
 	const themeSwitcher = useSelector(themeSelector)
+	const playingTrack = useSelector(playingTrackSelector)
+	// const [track, setTrack] = useState('')
 
 	const audio = useRef<HTMLAudioElement>(null)
 
@@ -16,6 +19,10 @@ export function Bar() {
 	const [currentTime, setCurrentTime] = useState(0)
 	const [playing, setPlaying] = useState(false)
 	const [clickedTime, setClickedTime] = useState(0)
+
+	// useEffect(() => {
+	// 	setTrack(playingTrack)
+	// },[playingTrack])
 
 	useEffect(() => {
 		if (audio.current === null) return
@@ -55,7 +62,7 @@ export function Bar() {
 		<S.Bar isDarkTheme={themeSwitcher}>
 			<S.BarContainer>
 				<audio ref={audio}>
-					<source src="./Queen - Bicycle Race.mp3"/>
+					<source src={playingTrack}/>
 					Ваш браузер не поддерживает <code>audio</code>
 				</audio>
 				<BarPlayerProgress currentTime={currentTime} duration={duration}

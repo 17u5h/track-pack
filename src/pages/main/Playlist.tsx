@@ -7,22 +7,20 @@ import {Track} from "../../models/response/PlaylistAllTracks";
 import {secToMinConverter} from "../../lib/secToMinConverter";
 import {PlaylistItemSkeletons} from "../../components/Skeletons/PlaylistItemSkeletons";
 import {useDispatch, useSelector} from "react-redux";
-import idsLikedTracksReducer from "../../store/reducers/idsLikedTracksReducer";
 import {putIdsLikedTracks} from "../../store/actions/creators/likedTracks";
 import {idsLikedTracksSelector} from "../../store/selectors/likedTracksSelector";
+import {themeSelector} from "../../store/selectors/themeSelector";
 
 export function Playlist() {
-
+	const themeSwitcher = useSelector(themeSelector)
 	const [isLoading, setIsLoading] = useState(true)
 	const [allTracks, setAllTracks] = useState<Track[]>([])
-	const [isLiked, setIsLiked] = useState(false)
 	const idsLikedTracks = useSelector(idsLikedTracksSelector)
 	const dispatch = useDispatch()
 
 	async function fetchAllTracks() {
 		try {
-			const {data} = await axios.get(`${BASE_URL}/catalog/track/all` )
-
+			const {data} = await axios.get(`${BASE_URL}/catalog/track/all`)
 			setAllTracks(data)
 		} catch (e) {
 			console.log(e)
@@ -49,13 +47,8 @@ export function Playlist() {
 		})
 	},[allTracks])
 
-
-
-
-
-
 	return (
-		<S.Playlist >
+		<S.Playlist isDarkTheme={themeSwitcher}>
 			{isLoading && <PlaylistItemSkeletons/> }
 			{!isLoading && allTracks.map(el =>
 					<PlaylistItem

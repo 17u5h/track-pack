@@ -10,9 +10,9 @@ export function NavMenu() {
 	return (
 		<S.NavMenu>
 			<S.NavMenuList >
-				<NavMenuLink >Главное</NavMenuLink>
+				<Link to={'/main'}><NavMenuLink >Главная</NavMenuLink></Link>
 				<Link to={'/my-tracks'}><NavMenuLink>Мой плейлист</NavMenuLink></Link>
-				<NavMenuLink>Войти</NavMenuLink>
+				<Link to={'/'}><NavMenuLink>Выйти</NavMenuLink></Link>
 				<ButtonToggleTheme />
 			</S.NavMenuList>
 		</S.NavMenu>
