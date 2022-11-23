@@ -11,7 +11,6 @@ import {playingTrackSelector} from "../../store/selectors/playingTrackSelector";
 export function Bar() {
 	const themeSwitcher = useSelector(themeSelector)
 	const playingTrack = useSelector(playingTrackSelector)
-	// const [track, setTrack] = useState('')
 
 	const audio = useRef<HTMLAudioElement>(null)
 
@@ -20,11 +19,14 @@ export function Bar() {
 	const [playing, setPlaying] = useState(false)
 	const [clickedTime, setClickedTime] = useState(0)
 
-	// useEffect(() => {
-	// 	setTrack(playingTrack)
-	// },[playingTrack])
+	useEffect(() => {
+		if (audio.current === null) return
+		audio.current.src = playingTrack
+		audio.current.volume = 0.5
+	}, [playingTrack])
 
 	useEffect(() => {
+
 		if (audio.current === null) return
 
 		const setAudioData = () => {
@@ -50,33 +52,40 @@ export function Bar() {
 			audio.current.currentTime = clickedTime
 			setClickedTime(0)
 		}
+
 		return () => {
 			audio.current?.removeEventListener('loadeddata', setAudioData)
 			audio.current?.removeEventListener('timeupdate', setAudioTime)
 		}
 	})
 
-
+	const volumeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		if (audio.current === null) return
+		const value = Number(event.target.value)
+		audio.current.volume = value/100
+	}
 
 	return (
-		<S.Bar isDarkTheme={themeSwitcher}>
-			<S.BarContainer>
-				<audio ref={audio}>
-					<source src={playingTrack}/>
-					Ваш браузер не поддерживает <code>audio</code>
-				</audio>
-				<BarPlayerProgress currentTime={currentTime} duration={duration}
-													 onTimeUpdate={(time: number) => setClickedTime(time)}/>
-				<S.PlayerBlock>
-					<S.PlayerContainer>
-						{playing ?
-							<PlayerControls isPlaying={true} handleClick={() => setPlaying(false)}/> :
-							<PlayerControls isPlaying={false} handleClick={() => setPlaying(true)}/>}
-						<PlayerTrackPlay/>
-					</S.PlayerContainer>
-					<BarVolumeBlock/>
-				</S.PlayerBlock>
-			</S.BarContainer>
-		</S.Bar>
+			<S.Bar isDarkTheme={themeSwitcher}>
+				<S.BarContainer>
+					<audio ref={audio}>
+						<source src={playingTrack}/>
+						Ваш браузер не поддерживает <code>audio</code>
+					</audio>
+					<BarPlayerProgress currentTime={currentTime} duration={duration}
+														 onTimeUpdate={(time: number) => setClickedTime(time)}/>
+					<S.PlayerBlock>
+						<S.PlayerContainer>
+							{playing ?
+								<PlayerControls isPlaying={true} handleClick={() => setPlaying(false)}/> :
+								<PlayerControls isPlaying={false} handleClick={() => setPlaying(true)}/>}
+							<PlayerTrackPlay/>
+						</S.PlayerContainer>
+						<BarVolumeBlock volumeChange={(event) => volumeChange(event)}/>
+					</S.PlayerBlock>
+				</S.BarContainer>
+			</S.Bar>
+
+
 	)
 }

@@ -27,7 +27,6 @@ export function PlaylistItem(props) {
 
 	async function playTrackInPlayer(){
 		await dispatch(fetchGetTrack(props.id))
-
 	}
 
 	return (

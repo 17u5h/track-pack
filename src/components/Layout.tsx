@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {Outlet} from "react-router-dom";
 import {Bar} from "./player/Bar";
 import {useSelector} from "react-redux";
@@ -6,12 +6,18 @@ import {themeSelector} from "../store/selectors/themeSelector";
 import * as S from "../styles";
 import {Nav} from "./nav/Nav";
 import {SideBar} from "../pages/main/SideBar";
+import {playingTrackSelector} from "../store/selectors/playingTrackSelector";
 
 
 export function Layout() {
 	const themeSwitcher = useSelector(themeSelector)
 	const userName = sessionStorage.getItem('userName') || ''
+	const [barVisible, setBarVisible] = useState(false)
+	const playingTrack = useSelector(playingTrackSelector)
 
+	useEffect(() => {
+		if (playingTrack) setBarVisible(true)
+	},[playingTrack])
 
 	return (
 		<div>
@@ -24,7 +30,7 @@ export function Layout() {
 					</S.Main>
 				</S.Container>
 			</S.Wrapper>
-			<Bar/>
+			{barVisible && <Bar/>}
 		</div>
 	)
 }

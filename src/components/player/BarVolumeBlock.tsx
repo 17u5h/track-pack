@@ -3,7 +3,11 @@ import * as S from "../../styles";
 import {useSelector} from "react-redux";
 import {themeSelector} from "../../store/selectors/themeSelector";
 
-export function BarVolumeBlock() {
+type Props = {
+	volumeChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+export function BarVolumeBlock(props: Props) {
 	const themeSwitcher = useSelector(themeSelector)
 
 	return (
@@ -15,7 +19,7 @@ export function BarVolumeBlock() {
 					</svg>
 				</S.VolumeImage>
 				<S.VolumeValue isDarkTheme={themeSwitcher}>
-					<input type="range" name={'range'}/>
+					<input type="range" name='range' onChange={(event) => props.volumeChange(event)}/>
 				</S.VolumeValue>
 			</S.VolumeContent>
 		</S.BarVolumeBlock>
