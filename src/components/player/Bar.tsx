@@ -6,11 +6,11 @@ import * as S from "../../styles";
 import {BarPlayerProgress} from "./BarPlayerProgress";
 import {useSelector} from "react-redux";
 import {themeSelector} from "../../store/selectors/themeSelector";
-import {playingTrackSelector} from "../../store/selectors/playingTrackSelector";
+import {urlPlayingTrackSelector} from "../../store/selectors/playingTrackSelector";
 
 export function Bar() {
 	const themeSwitcher = useSelector(themeSelector)
-	const playingTrack = useSelector(playingTrackSelector)
+	const urlPlayingTrack = useSelector(urlPlayingTrackSelector)
 
 	const audio = useRef<HTMLAudioElement>(null)
 
@@ -21,9 +21,10 @@ export function Bar() {
 
 	useEffect(() => {
 		if (audio.current === null) return
-		audio.current.src = playingTrack
+		audio.current.src = urlPlayingTrack
 		audio.current.volume = 0.5
-	}, [playingTrack])
+
+	}, [urlPlayingTrack])
 
 	useEffect(() => {
 
@@ -69,7 +70,7 @@ export function Bar() {
 			<S.Bar isDarkTheme={themeSwitcher}>
 				<S.BarContainer>
 					<audio ref={audio}>
-						<source src={playingTrack}/>
+						<source src={urlPlayingTrack}/>
 						Ваш браузер не поддерживает <code>audio</code>
 					</audio>
 					<BarPlayerProgress currentTime={currentTime} duration={duration}

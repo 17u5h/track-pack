@@ -6,7 +6,7 @@ import {LikeDislikeButton} from "./LikeDislikeButton";
 import axios from "axios";
 import {BASE_URL} from "../../store/store";
 import {fetchGetTrack} from "../../store/actions/thunks/playnigTrack";
-import {playingTrackSelector} from "../../store/selectors/playingTrackSelector";
+import {urlPlayingTrackSelector} from "../../store/selectors/playingTrackSelector";
 
 //
 // type Props = {
@@ -25,7 +25,7 @@ export function PlaylistItem(props) {
 	const themeSwitcher = useSelector(themeSelector)
 	const dispatch = useDispatch()
 
-	async function playTrackInPlayer(){
+	async function playTrackInPlayer() {
 		await dispatch(fetchGetTrack(props.id))
 	}
 
@@ -39,9 +39,7 @@ export function PlaylistItem(props) {
 						</svg>
 					</S.TrackTitleImage>
 					<S.TrackTitleText isDarkTheme={themeSwitcher}>
-						<a
-							// href={props.link}
-						>
+						<a>
 							{props.trackTitle}
 						</a>
 						<span></span>

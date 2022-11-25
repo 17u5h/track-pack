@@ -4,6 +4,7 @@ import thunk from "redux-thunk";
 import themeReducer from "./reducers/themeReducer";
 import idsLikedTracksReducer from "./reducers/idsLikedTracksReducer";
 import playingTrackReducer from "./reducers/playingTrackReducer";
+import sortedTracksReducer from "./reducers/sortedTracksReducer";
 
 export const BASE_URL = 'https://painassasin.online'
 
@@ -15,6 +16,7 @@ export const store = configureStore({
 		login: loginReducer,
 		theme: themeReducer,
 		likedTracks: idsLikedTracksReducer,
+		sortedTracks: sortedTracksReducer,
 		track: playingTrackReducer,
 	},
 	middleware: [thunk],

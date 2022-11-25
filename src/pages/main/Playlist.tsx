@@ -10,6 +10,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {putIdsLikedTracks} from "../../store/actions/creators/likedTracks";
 import {idsLikedTracksSelector} from "../../store/selectors/likedTracksSelector";
 import {themeSelector} from "../../store/selectors/themeSelector";
+import {
+	putSortedTracksByAuthor,
+	putSortedTracksByDate,
+	putSortedTracksByGenre
+} from "../../store/actions/creators/sortedTracks";
+import {sortTracksByAuthor, sortTracksByDate, sortTracksByGenre} from "../../lib/sortTracks";
 
 export function Playlist() {
 	const themeSwitcher = useSelector(themeSelector)
@@ -31,7 +37,7 @@ export function Playlist() {
 
 	useEffect(() => {
 		fetchAllTracks()
-	},[])
+	}, [])
 
 	useEffect(() => {
 		if (!allTracks.at(0)) return
@@ -45,24 +51,29 @@ export function Playlist() {
 			idsLikedTracks.includes(el.id) ?
 				el.isLiked = true : el.isLiked = false
 		})
-	},[allTracks])
+
+		dispatch(putSortedTracksByDate(sortTracksByDate(allTracks)))
+		dispatch(putSortedTracksByAuthor(sortTracksByAuthor(allTracks)))
+		dispatch(putSortedTracksByGenre(sortTracksByGenre(allTracks)))
+
+	}, [allTracks])
 
 	return (
 		<S.Playlist isDarkTheme={themeSwitcher}>
-			{isLoading && <PlaylistItemSkeletons/> }
+			{isLoading && <PlaylistItemSkeletons/>}
 			{!isLoading && allTracks.map(el =>
-					<PlaylistItem
-						id={el?.id}
-						key={el?.id || (Math.random() * 100000)}
-						trackTitle={el?.name || '-'}
-						trackAuthor={el?.author || '-'}
-						trackAlbum={el?.album || '-'}
-						trackLiked = {el.isLiked}
-						trackTime={secToMinConverter(el?.duration_in_seconds)}
-						imageLink={el?.logo || '../img/icon/sprite.svg#icon-note'}
-						link={el?.track_file || ''}
-					/>
-				)
+				<PlaylistItem
+					id={el?.id}
+					key={el?.id || (Math.random() * 100000)}
+					trackTitle={el?.name || '-'}
+					trackAuthor={el?.author || '-'}
+					trackAlbum={el?.album || '-'}
+					trackLiked={el.isLiked}
+					trackTime={secToMinConverter(el?.duration_in_seconds)}
+					imageLink={el?.logo || '../img/icon/sprite.svg#icon-note'}
+					link={el?.track_file || ''}
+				/>
+			)
 			}
 		</S.Playlist>
 	)

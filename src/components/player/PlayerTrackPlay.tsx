@@ -2,21 +2,24 @@ import React from 'react'
 import {TrackPlayContain} from "../../pages/main/TrackPlayContain";
 import {TrackPlayLikeDislike} from "../../pages/main/TrackPlayLikeDislike";
 import * as S from "../../styles";
+import {useSelector} from "react-redux";
+import {authorPlayingTrackSelector, titlePlayingTrackSelector} from "../../store/selectors/playingTrackSelector";
 
 export function PlayerTrackPlay() {
 	const trackInformation = {
-		authorLink: 'https://',
-		albumLink: 'https://',
-		songName: 'Bicycle Race',
-		songAuthor: 'Queen'
+		authorLink: '#',
+		albumLink: '#',
 	}
+	const songName = useSelector(titlePlayingTrackSelector)
+	const songAuthor = useSelector(authorPlayingTrackSelector)
+
 	return (
 		<S.TrackPlay>
 			<TrackPlayContain
 				authorLink={trackInformation.authorLink}
 				albumLink={trackInformation.albumLink}
-				songName={trackInformation.songName}
-				songAuthor={trackInformation.songAuthor}
+				songName={songName}
+				songAuthor={songAuthor}
 			/>
 			<TrackPlayLikeDislike/>
 		</S.TrackPlay>

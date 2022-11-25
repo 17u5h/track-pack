@@ -1,19 +1,22 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useEffect, useRef, useState} from 'react'
 import {PopUp} from "./PopUpFiltered";
 import * as S from "../../styles";
 import {ThemeContext} from "../../contexts/theme";
 import {useSelector} from "react-redux";
 import {themeSelector} from "../../store/selectors/themeSelector";
-
-
-const filteredAuthors = ['30 seconds to Mars', 'Arctic Monkeys', 'Blink 182', 'Dire Straits', 'Foo fighters', 'Green Day', "Guns 'n Roses", 'Metallica', 'The Offspring']
-const filteredByYears = ['Dire Straits', "Guns 'n Roses", 'Metallica', 'The Offspring', 'Foo fighters', 'Blink 182', '30 seconds to Mars', 'Green Day', 'Arctic Monkeys']
-const filteredByGenre = ["Guns 'n Roses", 'Metallica', 'The Offspring', 'Foo fighters', 'Blink 182', '30 seconds to Mars', 'Green Day', 'Arctic Monkeys', 'Dire Straits']
-
-//здесь будет прилетать массив объектов с сервера, который потом буду фильтровать по определенным полям и делать Array.from
+import {putSortedTracksByDate} from "../../store/actions/creators/sortedTracks";
+import {
+	sortedTracksByAuthorSelector,
+	sortedTracksByDateSelector,
+	sortedTracksByGenreSelector
+} from "../../store/selectors/sortedTracksSelector";
 
 export function CentralBlockFilter() {
 	const [whoActive, setActive] = useState('none')
+
+	const sortedTracksByDate = useSelector(sortedTracksByDateSelector)
+	const sortedTracksByAuthor = useSelector(sortedTracksByAuthorSelector)
+	const sortedTracksByGenre = useSelector(sortedTracksByGenreSelector)
 
 	function togglePopUp(name: string) {
 		if (whoActive === 'none') {
@@ -31,17 +34,17 @@ export function CentralBlockFilter() {
 
 			<S.FilterContainer>
 				<S.FilterButton onClick={() => togglePopUp('author')} isDarkTheme={themeSwitcher}>исполнителю</S.FilterButton>
-				{whoActive === 'author' && <PopUp>{filteredAuthors}</PopUp>}
+				{whoActive === 'author' && <PopUp setActive={setActive} tracks={sortedTracksByDate}/>}
 			</S.FilterContainer>
 
 			<S.FilterContainer>
 				<S.FilterButton onClick={() => togglePopUp('year')} isDarkTheme={themeSwitcher}>году выпуска</S.FilterButton>
-				{whoActive === 'year' && <PopUp>{filteredByYears}</PopUp>}
+				{whoActive === 'year' && <PopUp setActive={setActive} tracks={sortedTracksByAuthor}/>}
 			</S.FilterContainer>
 
 			<S.FilterContainer>
 				<S.FilterButton onClick={() => togglePopUp('genre')} isDarkTheme={themeSwitcher}>жанру</S.FilterButton>
-				{whoActive === 'genre' && <PopUp>{filteredByGenre}</PopUp>}
+				{whoActive === 'genre' && <PopUp setActive={setActive} tracks={sortedTracksByGenre}/>}
 			</S.FilterContainer>
 
 		</S.CentralBlockFilter>

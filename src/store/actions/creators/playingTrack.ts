@@ -3,20 +3,16 @@ import {
 	GET_TRACK_STARTED,
 	GET_TRACK_SUCCESS
 } from "../types/types";
+import {Track} from "../../../models/response/PlaylistAllTracks";
 
-type types ={
-	playingTrack: string,
-}
 
 export const fetchGetTrackStarted = () => ({
 	type: GET_TRACK_STARTED
 })
 
-export const fetchGetTrackSuccess = (playingTrack: types) => ({
+export const fetchGetTrackSuccess = (playingTrack: Track) => ({
 	type: GET_TRACK_SUCCESS,
-	payload: {
-		playingTrack
-	}
+	payload: playingTrack
 })
 
 export const fetchGetTrackFailure = (error: unknown) => ({

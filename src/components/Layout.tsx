@@ -6,14 +6,14 @@ import {themeSelector} from "../store/selectors/themeSelector";
 import * as S from "../styles";
 import {Nav} from "./nav/Nav";
 import {SideBar} from "../pages/main/SideBar";
-import {playingTrackSelector} from "../store/selectors/playingTrackSelector";
+import {urlPlayingTrackSelector} from "../store/selectors/playingTrackSelector";
 
 
 export function Layout() {
 	const themeSwitcher = useSelector(themeSelector)
 	const userName = sessionStorage.getItem('userName') || ''
 	const [barVisible, setBarVisible] = useState(false)
-	const playingTrack = useSelector(playingTrackSelector)
+	const playingTrack = useSelector(urlPlayingTrackSelector)
 
 	useEffect(() => {
 		if (playingTrack) setBarVisible(true)
