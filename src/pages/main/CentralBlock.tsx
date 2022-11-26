@@ -1,20 +1,20 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import {CentralBlockSearch} from "./CentralBlockSearch";
 import {CentralBlockFilter} from "./CentralBlockFilter";
 import {PlaylistTitle} from "./PlaylistTitle";
 import {Playlist} from "./Playlist";
 import * as S from "../../styles";
-import {ThemeContext} from "../../contexts/theme";
-
+import {useSelector} from "react-redux";
+import {themeSelector} from "../../store/selectors/themeSelector";
 
 
 export function CentralBlock() {
-	const {themeSwitcher} = useContext(ThemeContext)
+	const themeSwitcher = useSelector(themeSelector)
 
 	return (
 		<S.CentralBlock>
 			<CentralBlockSearch/>
-			<S.CentralBlockTitle dark={themeSwitcher}>Треки</S.CentralBlockTitle>
+			<S.CentralBlockTitle isDarkTheme={themeSwitcher}>Треки</S.CentralBlockTitle>
 			<CentralBlockFilter/>
 			<S.CentralBlockContent>
 				<PlaylistTitle/>

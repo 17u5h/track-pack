@@ -1,6 +1,7 @@
-import React, {useContext, useRef} from 'react'
+import React, {useRef} from 'react'
 import * as S from '../../styles'
-import {ThemeContext} from "../../contexts/theme";
+import {useSelector} from "react-redux";
+import {themeSelector} from "../../store/selectors/themeSelector";
 
 type Props = {
 	currentTime: number
@@ -9,6 +10,8 @@ type Props = {
 }
 
 export function BarPlayerProgress(props: Props) {
+	const themeSwitcher = useSelector(themeSelector)
+
 	const {currentTime, duration, onTimeUpdate} = props
 	const currentPercentage = (currentTime / duration) * 100
 	const barRef = useRef<HTMLDivElement>(null)
@@ -45,13 +48,11 @@ export function BarPlayerProgress(props: Props) {
 		}
 	}
 
-	const {themeSwitcher} = useContext(ThemeContext)
-
 	return (
 		<S.BarPlayerProgress ref={barRef}
 												 style={setBarProgress()}
 												 onMouseDown={(event: MouseEvent) => handleTimeDrag(event)}
-												 dark={themeSwitcher}>
+												 isDarkTheme={themeSwitcher}>
 
 		</S.BarPlayerProgress>
 	)

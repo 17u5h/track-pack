@@ -1,8 +1,9 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import * as S from "../../styles";
 import {PauseButton} from "./PauseButton";
 import {PlayButton} from "./PlayButton";
-import {ThemeContext} from "../../contexts/theme";
+import {useSelector} from "react-redux";
+import {themeSelector} from "../../store/selectors/themeSelector";
 
 type Props = {
 	handleClick: () => void
@@ -10,12 +11,12 @@ type Props = {
 }
 
 export function PlayerControls(props: Props) {
-	const {themeSwitcher} = useContext(ThemeContext)
+	const themeSwitcher = useSelector(themeSelector)
 
 	return (
 		<S.PlayerControls>
 
-			<S.PlayerButtonPrev dark={themeSwitcher}>
+			<S.PlayerButtonPrev isDarkTheme={themeSwitcher}>
 				<svg>
 					<use href='../img/icon/sprite.svg#icon-prev'/>
 				</svg>
@@ -24,17 +25,17 @@ export function PlayerControls(props: Props) {
 				<PauseButton handleClick={() => props.handleClick()}/>
 				: <PlayButton handleClick={() => props.handleClick()}/>
 			}
-			<S.PlayerButtonNext dark={themeSwitcher}>
+			<S.PlayerButtonNext isDarkTheme={themeSwitcher}>
 				<svg>
 					<use href='../img/icon/sprite.svg#icon-next'/>
 				</svg>
 			</S.PlayerButtonNext>
-			<S.PlayerButtonRepeat dark={themeSwitcher}>
+			<S.PlayerButtonRepeat isDarkTheme={themeSwitcher}>
 				<svg>
 					<use href='../img/icon/sprite.svg#icon-repeat'/>
 				</svg>
 			</S.PlayerButtonRepeat>
-			<S.PlayerButtonShuffle dark={themeSwitcher}>
+			<S.PlayerButtonShuffle isDarkTheme={themeSwitcher}>
 				<svg>
 					<use href='../img/icon/sprite.svg#icon-shuffle'/>
 				</svg>

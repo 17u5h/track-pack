@@ -1,13 +1,20 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import * as S from "../../styles";
-import {ThemeContext} from "../../contexts/theme";
+import {useDispatch, useSelector} from "react-redux";
+import {themeSelector} from "../../store/selectors/themeSelector";
+import {toggleDarkTheme, toggleLightTheme} from "../../store/actions/creators/theme";
 
 
 
 export function ButtonToggleTheme(){
-  const {themeSwitcher, toggleTheme} = useContext(ThemeContext)
+  const themeSwitcher = useSelector(themeSelector)
+  const dispatch = useDispatch()
+
+  const toggleTheme = () => {
+    themeSwitcher ? dispatch(toggleLightTheme()) : dispatch(toggleDarkTheme())
+  }
 
   return(
-    <S.ButtonToggleTheme dark={themeSwitcher} onClick={toggleTheme}/>
+    <S.ButtonToggleTheme isDarkTheme={themeSwitcher} onClick={toggleTheme}/>
   )
 }

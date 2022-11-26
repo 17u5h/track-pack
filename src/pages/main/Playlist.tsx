@@ -1,40 +1,80 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {PlaylistItem} from "./PlaylistItem";
 import * as S from "../../styles";
-
-const tracks = [
-	{
-		"id": "1",
-		"trackTitle": "Guilt",
-		"trackAuthor": "Nero",
-		"trackAlbum": "Welcome Reality",
-		"trackTime": "4:44",
-		"imageLink": "../img/icon/sprite.svg#icon-note",
-		"titleLink": "https://",
-		"authorLink": "https://",
-		"albumLink": "https://"
-	}]
-
+import {BASE_URL} from "../../store/store";
+import axios from "axios";
+import {Track} from "../../models/response/PlaylistAllTracks";
+import {secToMinConverter} from "../../lib/secToMinConverter";
+import {PlaylistItemSkeletons} from "../../components/Skeletons/PlaylistItemSkeletons";
+import {useDispatch, useSelector} from "react-redux";
+import {putIdsLikedTracks} from "../../store/actions/creators/likedTracks";
+import {idsLikedTracksSelector} from "../../store/selectors/likedTracksSelector";
+import {themeSelector} from "../../store/selectors/themeSelector";
+import {
+	putSortedTracksByAuthor,
+	putSortedTracksByDate,
+	putSortedTracksByGenre
+} from "../../store/actions/creators/sortedTracks";
+import {sortTracksByAuthor, sortTracksByDate, sortTracksByGenre} from "../../lib/sortTracks";
 
 export function Playlist() {
+	const themeSwitcher = useSelector(themeSelector)
 	const [isLoading, setIsLoading] = useState(true)
+	const [allTracks, setAllTracks] = useState<Track[]>([])
+	const idsLikedTracks = useSelector(idsLikedTracksSelector)
+	const dispatch = useDispatch()
 
-	setTimeout(() => {
-		setIsLoading(false)
-	}, 1000)
+	async function fetchAllTracks() {
+		try {
+			const {data} = await axios.get(`${BASE_URL}/catalog/track/all`)
+			setAllTracks(data)
+		} catch (e) {
+			console.log(e)
+		} finally {
+			setIsLoading(false)
+		}
+	}
+
+	useEffect(() => {
+		fetchAllTracks()
+	}, [])
+
+	useEffect(() => {
+		if (!allTracks.at(0)) return
+		const email = sessionStorage.getItem('userEmail')
+
+		const likedTracks = allTracks.filter(el => el.stared_user.find(userField => userField.email === email))
+		const idsLikedTracks = likedTracks.map(el => el.id)
+		dispatch(putIdsLikedTracks(idsLikedTracks))
+
+		allTracks.forEach(el => {
+			idsLikedTracks.includes(el.id) ?
+				el.isLiked = true : el.isLiked = false
+		})
+
+		dispatch(putSortedTracksByDate(sortTracksByDate(allTracks)))
+		dispatch(putSortedTracksByAuthor(sortTracksByAuthor(allTracks)))
+		dispatch(putSortedTracksByGenre(sortTracksByGenre(allTracks)))
+
+	}, [allTracks])
 
 	return (
-		<S.Playlist>
-			{!isLoading && <PlaylistItem
-				trackTitle={tracks[0].trackTitle}
-				trackAuthor={tracks[0].trackAuthor}
-				trackAlbum={tracks[0].trackAlbum}
-				trackTime={tracks[0].trackTime}
-				imageLink={tracks[0].imageLink}
-				titleLink={tracks[0].titleLink}
-				authorLink={tracks[0].authorLink}
-				albumLink={tracks[0].albumLink}
-			/>}
+		<S.Playlist isDarkTheme={themeSwitcher}>
+			{isLoading && <PlaylistItemSkeletons/>}
+			{!isLoading && allTracks.map(el =>
+				<PlaylistItem
+					id={el?.id}
+					key={el?.id || (Math.random() * 100000)}
+					trackTitle={el?.name || '-'}
+					trackAuthor={el?.author || '-'}
+					trackAlbum={el?.album || '-'}
+					trackLiked={el.isLiked}
+					trackTime={secToMinConverter(el?.duration_in_seconds)}
+					imageLink={el?.logo || '../img/icon/sprite.svg#icon-note'}
+					link={el?.track_file || ''}
+				/>
+			)
+			}
 		</S.Playlist>
 	)
 }

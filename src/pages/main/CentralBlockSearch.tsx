@@ -1,11 +1,13 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import * as S from "../../styles";
-import {ThemeContext} from "../../contexts/theme";
+import {useSelector} from "react-redux";
+import {themeSelector} from "../../store/selectors/themeSelector";
 
 export function CentralBlockSearch() {
-	const {themeSwitcher} = useContext(ThemeContext)
+	const themeSwitcher = useSelector(themeSelector)
+
 	return (
-		<S.CentralBlockSearch dark={themeSwitcher}>
+		<S.CentralBlockSearch isDarkTheme={themeSwitcher}>
 			<svg>
 				<use href={'../img/icon/sprite.svg#icon-search'}/>
 			</svg>

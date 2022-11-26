@@ -1,10 +1,12 @@
 import React, {useContext} from "react";
 import * as S from "../../styles";
 import {ThemeContext} from "../../contexts/theme";
+import {useSelector} from "react-redux";
+import {themeSelector} from "../../store/selectors/themeSelector";
 
 
 export function Logo() {
-	const {themeSwitcher} = useContext(ThemeContext)
+	const themeSwitcher = useSelector(themeSelector)
 
 	function setLogo(){
 		if (themeSwitcher){

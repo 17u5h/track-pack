@@ -1,6 +1,7 @@
-import React, {useContext} from "react";
+import React from "react";
 import * as S from "../../styles";
-import {ThemeContext} from "../../contexts/theme";
+import {useSelector} from "react-redux";
+import {themeSelector} from "../../store/selectors/themeSelector";
 
 
 type Props = {
@@ -8,13 +9,13 @@ type Props = {
 }
 
 export function NavBurger(props: Props) {
-	const {themeSwitcher} = useContext(ThemeContext)
+	const themeSwitcher = useSelector(themeSelector)
 
 	return (
 		<S.NavBurger onClick={props.onClick}>
-			<S.BurgerLine dark={themeSwitcher}/>
-			<S.BurgerLine dark={themeSwitcher}/>
-			<S.BurgerLine dark={themeSwitcher}/>
+			<S.BurgerLine isDarkTheme={themeSwitcher}/>
+			<S.BurgerLine isDarkTheme={themeSwitcher}/>
+			<S.BurgerLine isDarkTheme={themeSwitcher}/>
 		</S.NavBurger>
 	)
 }

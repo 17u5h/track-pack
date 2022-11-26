@@ -4,6 +4,7 @@ import {GlobalStyle} from "./styles";
 
 
 function App() {
+
 	return (
 		<>
 			<AppRoutes/>
