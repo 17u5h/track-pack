@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import * as S from "../../styles";
 import {PlaylistItemSkeletons} from "../../components/Skeletons/PlaylistItemSkeletons";
 import {PlaylistItem} from "../main/PlaylistItem";
 import {secToMinConverter} from "../../lib/secToMinConverter";
 import {useSelector} from "react-redux";
 import {themeSelector} from "../../store/selectors/themeSelector";
+import * as S from "../../styles";
 import {BASE_URL} from "../../store/store";
 import {Track} from "../../models/response/PlaylistAllTracks";
 import $api from "../../http/interceptors";

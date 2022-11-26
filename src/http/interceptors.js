@@ -1,8 +1,7 @@
 import axios from "axios";
-import {BASE_URL} from "../store/store";
 import {getCookie} from "../lib/cookieReader";
 import {fetchCreateTokenSuccess} from "../store/actions/creators/token";
-
+import {BASE_URL} from "../store/store";
 
 let store
 
@@ -10,12 +9,11 @@ export const injectStore = (_store) => {
 	store = _store
 }
 
-
 const refreshToken = getCookie('refresh')
 
 const $api = axios.create({
 	baseURL: BASE_URL,
-	headers:{
+	headers: {
 		'Content-Type': 'application/json'
 	},
 })

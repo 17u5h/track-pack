@@ -1,9 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import {PlaylistItem} from "./PlaylistItem";
-import * as S from "../../styles";
-import {BASE_URL} from "../../store/store";
 import axios from "axios";
-import {Track} from "../../models/response/PlaylistAllTracks";
+import {PlaylistItem} from "./PlaylistItem";
 import {secToMinConverter} from "../../lib/secToMinConverter";
 import {PlaylistItemSkeletons} from "../../components/Skeletons/PlaylistItemSkeletons";
 import {useDispatch, useSelector} from "react-redux";
@@ -16,6 +13,9 @@ import {
 	putSortedTracksByGenre
 } from "../../store/actions/creators/sortedTracks";
 import {sortTracksByAuthor, sortTracksByDate, sortTracksByGenre} from "../../lib/sortTracks";
+import * as S from "../../styles";
+import {BASE_URL} from "../../store/store";
+import {Track} from "../../models/response/PlaylistAllTracks";
 
 export function Playlist() {
 	const themeSwitcher = useSelector(themeSelector)
@@ -55,7 +55,6 @@ export function Playlist() {
 		dispatch(putSortedTracksByDate(sortTracksByDate(allTracks)))
 		dispatch(putSortedTracksByAuthor(sortTracksByAuthor(allTracks)))
 		dispatch(putSortedTracksByGenre(sortTracksByGenre(allTracks)))
-
 	}, [allTracks])
 
 	return (

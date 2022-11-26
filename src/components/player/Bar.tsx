@@ -2,11 +2,11 @@ import React, {useEffect, useRef, useState} from 'react'
 import {PlayerControls} from "./PlayerControls";
 import {PlayerTrackPlay} from "./PlayerTrackPlay";
 import {BarVolumeBlock} from "./BarVolumeBlock";
-import * as S from "../../styles";
 import {BarPlayerProgress} from "./BarPlayerProgress";
 import {useSelector} from "react-redux";
 import {themeSelector} from "../../store/selectors/themeSelector";
 import {urlPlayingTrackSelector} from "../../store/selectors/playingTrackSelector";
+import * as S from "../../styles";
 
 export function Bar() {
 	const themeSwitcher = useSelector(themeSelector)

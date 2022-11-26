@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import {Outlet} from "react-router-dom";
-import {Bar} from "./player/Bar";
 import {useSelector} from "react-redux";
 import {themeSelector} from "../store/selectors/themeSelector";
-import * as S from "../styles";
+import {Bar} from "./player/Bar";
 import {Nav} from "./nav/Nav";
 import {SideBar} from "../pages/main/SideBar";
 import {urlPlayingTrackSelector} from "../store/selectors/playingTrackSelector";
-
+import * as S from "../styles";
 
 export function Layout() {
 	const themeSwitcher = useSelector(themeSelector)

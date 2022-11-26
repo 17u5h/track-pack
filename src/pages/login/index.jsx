@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react'
-import {LoginBackground} from "./styles";
-import * as S from "./styles"
-import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
-import {BASE_URL} from "../../store/store";
 import {useDispatch, useSelector} from "react-redux";
 import {loginErrorSelector} from "../../store/selectors/loginSelector";
 import {fetchCreateToken} from "../../store/actions/thunks/token";
+import {Link, useNavigate} from "react-router-dom";
+import {LoginBackground} from "./styles";
+import * as S from "./styles"
+import {BASE_URL} from "../../store/store";
 
 export function Login() {
 
@@ -29,7 +29,7 @@ export function Login() {
 	const loginHandler = (event) => {
 		const email = event.target.value
 		setEmail(email)
-		email ? setEmailError('') : setEmailError('E-mail не может быть пустым')
+		setEmailError(email ? '' : 'E-mail не может быть пустым')
 	}
 	const passwordHandler = (event) => {
 		setPassword(event.target.value)
@@ -46,7 +46,7 @@ export function Login() {
 		}
 	}
 	useEffect(() => {
-		(emailError || passwordError) ? setFormValid(false) : setFormValid(true)
+		setFormValid(!(emailError || passwordError))
 	}, [emailError, passwordError])
 
 	async function enterHandler(event) {
@@ -63,13 +63,12 @@ export function Login() {
 		try {
 			const response = await axios.post(`${BASE_URL}/user/login/`, user)
 			sessionStorage.setItem('userName', response.data.username)
-			await dispatch(fetchCreateToken(user,''))
+			await dispatch(fetchCreateToken(user, ''))
 			sessionStorage.setItem('userEmail', email)
 			setPasswordError('')
 			setLoginLoading(false)
 			navigate('/main')
-		}
-		catch (error) {
+		} catch (error) {
 			setLoginLoading(false)
 			setEnterError('Не получилось, описание в консоли')
 			console.log(error.request.responseText)
@@ -97,7 +96,8 @@ export function Login() {
 							 placeholder={'Пароль'}/>
 
 				{enterError && <S.PasswordError>{enterError}</S.PasswordError>}
-				<Link to='/main'><S.EnterButton disabled={!formValid} onClick={(event) => enterHandler(event)}>Войти</S.EnterButton></Link>
+				<Link to='/main'><S.EnterButton disabled={!formValid}
+																				onClick={(event) => enterHandler(event)}>Войти</S.EnterButton></Link>
 				<Link to='/registration'><S.RegisterButton>Зарегистрироваться</S.RegisterButton></Link>
 
 				{loginLoading && <S.LoadingSpinner/>}

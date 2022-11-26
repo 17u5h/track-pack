@@ -1,12 +1,9 @@
 import React from 'react'
-import * as S from "../../styles"
 import {useDispatch, useSelector} from "react-redux";
 import {themeSelector} from "../../store/selectors/themeSelector";
 import {LikeDislikeButton} from "./LikeDislikeButton";
-import axios from "axios";
-import {BASE_URL} from "../../store/store";
 import {fetchGetTrack} from "../../store/actions/thunks/playnigTrack";
-import {urlPlayingTrackSelector} from "../../store/selectors/playingTrackSelector";
+import * as S from "../../styles"
 
 //
 // type Props = {

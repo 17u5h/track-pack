@@ -6,8 +6,6 @@ import {
 import axios from "axios";
 import {BASE_URL} from "../../store";
 
-
-
 export const fetchCreateToken = (payload, isRefresh) => async (dispatch) => {
 	dispatch(fetchCreateTokenStarted())
 
@@ -17,8 +15,7 @@ export const fetchCreateToken = (payload, isRefresh) => async (dispatch) => {
 		const refreshToken = data.refresh
 		document.cookie = `refreshToken = ${refreshToken}`
 		dispatch(fetchCreateTokenSuccess(accessToken))
-	}
-	catch (error) {
+	} catch (error) {
 		dispatch(fetchCreateTokenFailure(error))
 	}
 }

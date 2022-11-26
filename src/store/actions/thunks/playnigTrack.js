@@ -2,7 +2,6 @@ import {fetchGetTrackFailure, fetchGetTrackStarted, fetchGetTrackSuccess} from "
 import axios from "axios";
 import {BASE_URL} from "../../store";
 
-
 export const fetchGetTrack = (trackId) => async (dispatch) => {
 	dispatch(fetchGetTrackStarted())
 

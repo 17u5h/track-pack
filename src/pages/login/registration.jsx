@@ -1,11 +1,12 @@
-import {LoginBackground} from "./styles";
-import * as S from "./styles";
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import {BASE_URL} from "../../store/store";
 import {Link, useNavigate} from "react-router-dom";
 import {fetchCreateToken} from "../../store/actions/thunks/token";
 import {useDispatch} from "react-redux";
+import {LoginBackground} from "./styles";
+import * as S from "./styles";
+import {BASE_URL} from "../../store/store";
+
 
 
 export function Registration(){

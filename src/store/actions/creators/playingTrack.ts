@@ -5,7 +5,6 @@ import {
 } from "../types/types";
 import {Track} from "../../../models/response/PlaylistAllTracks";
 
-
 export const fetchGetTrackStarted = () => ({
 	type: GET_TRACK_STARTED
 })

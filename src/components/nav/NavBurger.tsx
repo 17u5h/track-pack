@@ -1,8 +1,7 @@
 import React from "react";
-import * as S from "../../styles";
 import {useSelector} from "react-redux";
 import {themeSelector} from "../../store/selectors/themeSelector";
-
+import * as S from "../../styles";
 
 type Props = {
 	onClick: () => void
