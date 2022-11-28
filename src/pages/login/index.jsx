@@ -93,7 +93,7 @@ export function Login() {
 								 if (event.key === 'Enter') enterHandler(event)
 							 }}
 							 name='password'
-							 placeholder={'Пароль'}/>
+							 placeholder='Пароль'/>
 
 				{enterError && <S.PasswordError>{enterError}</S.PasswordError>}
 				<Link to='/main'><S.EnterButton disabled={!formValid}

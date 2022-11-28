@@ -12,4 +12,5 @@ export interface Track {
 	stared_user: User[],
 	track_file: string,
 	isLiked: boolean,
+	error?: null
 }

@@ -6,8 +6,12 @@ import {themeSelector} from "../../store/selectors/themeSelector";
 import * as S from "../../styles";
 
 type Props = {
-	handleClick: () => void
-	isPlaying: boolean
+	handleClickPrev: () => void,
+	handleClickPlayPause: () => void,
+	handleClickNext: () => void,
+	handleClickRepeat: () => void,
+	handleClickShuffle: () => void,
+	isPlaying: boolean,
 }
 
 export function PlayerControls(props: Props) {
@@ -16,26 +20,26 @@ export function PlayerControls(props: Props) {
 	return (
 		<S.PlayerControls>
 
-			<S.PlayerButtonPrev isDarkTheme={themeSwitcher}>
+			<S.PlayerButtonPrev isDarkTheme={themeSwitcher} onClick={() => props.handleClickPrev()}>
 				<svg>
 					<use href='../img/icon/sprite.svg#icon-prev'/>
 				</svg>
 			</S.PlayerButtonPrev>
 			{props.isPlaying ?
-				<PauseButton handleClick={() => props.handleClick()}/>
-				: <PlayButton handleClick={() => props.handleClick()}/>
+				<PauseButton handleClick={() => props.handleClickPlayPause()}/>
+				: <PlayButton handleClick={() => props.handleClickPlayPause()}/>
 			}
-			<S.PlayerButtonNext isDarkTheme={themeSwitcher}>
+			<S.PlayerButtonNext isDarkTheme={themeSwitcher} onClick={() => props.handleClickNext()}>
 				<svg>
 					<use href='../img/icon/sprite.svg#icon-next'/>
 				</svg>
 			</S.PlayerButtonNext>
-			<S.PlayerButtonRepeat isDarkTheme={themeSwitcher}>
+			<S.PlayerButtonRepeat isDarkTheme={themeSwitcher} onClick ={() => props.handleClickRepeat()}>
 				<svg>
 					<use href='../img/icon/sprite.svg#icon-repeat'/>
 				</svg>
 			</S.PlayerButtonRepeat>
-			<S.PlayerButtonShuffle isDarkTheme={themeSwitcher}>
+			<S.PlayerButtonShuffle isDarkTheme={themeSwitcher} onClick ={() => props.handleClickShuffle()}>
 				<svg>
 					<use href='../img/icon/sprite.svg#icon-shuffle'/>
 				</svg>

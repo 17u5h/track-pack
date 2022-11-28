@@ -25,13 +25,13 @@ $api.interceptors.request.use((config) => {
 
 $api.interceptors.response.use((config) => {
 	return config
-}, async (error) => {
+}, async (error, dispatch) => {
 	const originalRequest = error.config
 	if (error.response.status === 401 && error.config && !originalRequest.isRetry) {
 		originalRequest.isRetry = true
 		try {
 			const response = await axios.post(`${BASE_URL}/user/token/refresh/`, {"refresh": refreshToken})
-			store.getState().dispatch(fetchCreateTokenSuccess(response.data.access))
+			dispatch(fetchCreateTokenSuccess(response.data.access))
 		} catch (e) {
 			console.log(e)
 		}
