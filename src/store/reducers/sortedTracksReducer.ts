@@ -1,5 +1,6 @@
 import {PayloadAction} from "@reduxjs/toolkit";
-import {TRACKS_BY_AUTHOR, TRACKS_BY_DATE, TRACKS_BY_GENRE} from "../actions/types/types";
+import {SEARCHED_TRACKS, TRACKS_BY_AUTHOR, TRACKS_BY_DATE, TRACKS_BY_GENRE} from "../actions/types/types";
+import {putSearchedTracks} from "../actions/creators/sortedTracks";
 
 const initialState = {
 	sortedTracksByDate: [],
@@ -13,21 +14,28 @@ export default function sortedTracksReducer(state = initialState, action: Payloa
 			const sortedTracksByDate = action.payload
 			return {
 				...state,
-				sortedTracksByDate
+				sortedTracksByDate,
 			}
 		}
 		case TRACKS_BY_AUTHOR: {
 			const sortedTracksByAuthor = action.payload
 			return {
 				...state,
-				sortedTracksByAuthor
+				sortedTracksByAuthor,
 			}
 		}
 		case TRACKS_BY_GENRE: {
 			const sortedTracksByGenre = action.payload
 			return {
 				...state,
-				sortedTracksByGenre
+				sortedTracksByGenre,
+			}
+		}
+		case SEARCHED_TRACKS: {
+			const searchedTracks = action.payload
+			return {
+				...state,
+				searchedTracks,
 			}
 		}
 		default:

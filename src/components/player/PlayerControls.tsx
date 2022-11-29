@@ -34,12 +34,12 @@ export function PlayerControls(props: Props) {
 					<use href='../img/icon/sprite.svg#icon-next'/>
 				</svg>
 			</S.PlayerButtonNext>
-			<S.PlayerButtonRepeat isDarkTheme={themeSwitcher} onClick ={() => props.handleClickRepeat()}>
+			<S.PlayerButtonRepeat isDarkTheme={themeSwitcher} onClick={() => props.handleClickRepeat()}>
 				<svg>
 					<use href='../img/icon/sprite.svg#icon-repeat'/>
 				</svg>
 			</S.PlayerButtonRepeat>
-			<S.PlayerButtonShuffle isDarkTheme={themeSwitcher} onClick ={() => props.handleClickShuffle()}>
+			<S.PlayerButtonShuffle isDarkTheme={themeSwitcher} onClick={() => props.handleClickShuffle()}>
 				<svg>
 					<use href='../img/icon/sprite.svg#icon-shuffle'/>
 				</svg>

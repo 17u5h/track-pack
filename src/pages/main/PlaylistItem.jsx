@@ -24,8 +24,6 @@ export function PlaylistItem(props) {
 	pushStore(store)
 	const themeSwitcher = useSelector(themeSelector)
 	const dispatch = useDispatch()
-	const idsCurrentTracks = useSelector(idsCurrentTracksSelector)
-
 
 	return (
 		<S.PlaylistItem>

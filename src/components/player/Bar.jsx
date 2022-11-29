@@ -37,7 +37,7 @@ export function Bar() {
 
 	useEffect(() => {
 		setUrlCurrentTrack(urlPlayingTrack)
-	},[urlPlayingTrack])
+	}, [urlPlayingTrack])
 
 	useEffect(() => {
 		if (audio.current === null) return
@@ -98,42 +98,42 @@ export function Bar() {
 
 	const volumeChange = (event) => {
 		if (audio.current === null) return
-		setVolume(Number(event.target.value)/100)
+		setVolume(Number(event.target.value) / 100)
 		audio.current.volume = volume
 	}
 
 	return (
-			<S.Bar isDarkTheme={themeSwitcher}>
-				<S.BarContainer>
-					<audio ref={audio}>
-						<source src={urlPlayingTrack}/>
-						Ваш браузер не поддерживает <code>audio</code>
-					</audio>
-					<BarPlayerProgress currentTime={currentTime} duration={duration}
-														 onTimeUpdate={(time) => setClickedTime(time)}/>
-					<S.PlayerBlock>
-						<S.PlayerContainer>
-							{playing ?
-								<PlayerControls
-									isPlaying={true}
-									handleClickPlayPause={() => setPlaying(false)}
-									handleClickPrev={() => handleClickPrev()}
-									handleClickNext ={() => handleClickNext()}
-									handleClickRepeat ={() => handleClickRepeat()}
-									handleClickShuffle ={() => handleClickShuffle()}/> :
-								<PlayerControls
-									isPlaying={false}
-									handleClickPlayPause={() => setPlaying(true)}
-									handleClickPrev={() => handleClickPrev()}
-									handleClickNext ={() => handleClickNext()}
-									handleClickRepeat ={() => handleClickRepeat()}
-									handleClickShuffle ={() => handleClickShuffle()}/>}
-							<PlayerTrackPlay/>
-						</S.PlayerContainer>
-						<BarVolumeBlock volumeChange={(event) => volumeChange(event)}/>
-					</S.PlayerBlock>
-				</S.BarContainer>
-			</S.Bar>
+		<S.Bar isDarkTheme={themeSwitcher}>
+			<S.BarContainer>
+				<audio ref={audio}>
+					<source src={urlPlayingTrack}/>
+					Ваш браузер не поддерживает <code>audio</code>
+				</audio>
+				<BarPlayerProgress currentTime={currentTime} duration={duration}
+													 onTimeUpdate={(time) => setClickedTime(time)}/>
+				<S.PlayerBlock>
+					<S.PlayerContainer>
+						{playing ?
+							<PlayerControls
+								isPlaying={true}
+								handleClickPlayPause={() => setPlaying(false)}
+								handleClickPrev={() => handleClickPrev()}
+								handleClickNext={() => handleClickNext()}
+								handleClickRepeat={() => handleClickRepeat()}
+								handleClickShuffle={() => handleClickShuffle()}/> :
+							<PlayerControls
+								isPlaying={false}
+								handleClickPlayPause={() => setPlaying(true)}
+								handleClickPrev={() => handleClickPrev()}
+								handleClickNext={() => handleClickNext()}
+								handleClickRepeat={() => handleClickRepeat()}
+								handleClickShuffle={() => handleClickShuffle()}/>}
+						<PlayerTrackPlay/>
+					</S.PlayerContainer>
+					<BarVolumeBlock volumeChange={(event) => volumeChange(event)}/>
+				</S.PlayerBlock>
+			</S.BarContainer>
+		</S.Bar>
 
 
 	)

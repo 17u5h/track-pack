@@ -5,7 +5,6 @@ import {secToMinConverter} from "../../lib/secToMinConverter";
 import {PlaylistItemSkeletons} from "../../components/Skeletons/PlaylistItemSkeletons";
 import {useDispatch, useSelector} from "react-redux";
 import {putIdsCurrentTracks, putIdsLikedTracks} from "../../store/actions/creators/likedTracks";
-import {idsLikedTracksSelector} from "../../store/selectors/TracksSelector";
 import {themeSelector} from "../../store/selectors/themeSelector";
 import {
 	putSortedTracksByAuthor,
@@ -18,18 +17,22 @@ import {BASE_URL} from "../../store/store";
 import {Track} from "../../models/response/PlaylistAllTracks";
 import {putAllTracks} from "../../store/actions/creators/allTracks";
 import {allTracksSelector} from "../../store/selectors/allTracksSelector";
+import {searchedTracksSelector} from "../../store/selectors/sortedTracksSelector";
 
 export function Playlist() {
 	const themeSwitcher = useSelector(themeSelector)
 	const [isLoading, setIsLoading] = useState(true)
 	const [allTracks, setAllTracks] = useState<Track[]>([])
+	const [visibleTracks, setVisibleTracks] = useState<Track[]>([])
 	const dispatch = useDispatch()
 	const reduxAllTracks = useSelector(allTracksSelector)
+	const searchedTracks = useSelector(searchedTracksSelector)
 
 	async function fetchAllTracks() {
 		try {
 			const {data} = await axios.get(`${BASE_URL}/catalog/track/all/`)
-			await setAllTracks(data)
+			setAllTracks(data)
+			setVisibleTracks(data)
 		} catch (e) {
 			console.log(e)
 		} finally {
@@ -65,17 +68,15 @@ export function Playlist() {
 		dispatch(putSortedTracksByGenre(sortTracksByGenre(unsortedTracksByGenre)))
 		dispatch(putAllTracks(allTracks))
 	}, [allTracks])
-	//
+
 	useEffect(() => {
-		setAllTracks(reduxAllTracks)
-	},[reduxAllTracks])
-
-
+		searchedTracks.length && searchedTracks.length !== reduxAllTracks.length ? setVisibleTracks(searchedTracks) : setVisibleTracks(reduxAllTracks)
+	}, [reduxAllTracks, searchedTracks])
 
 	return (
 		<S.Playlist isDarkTheme={themeSwitcher}>
 			{isLoading && <PlaylistItemSkeletons/>}
-			{!isLoading && allTracks.map(el =>
+			{!isLoading && visibleTracks.map(el =>
 				<PlaylistItem
 					id={el?.id}
 					key={el?.id || (Math.random() * 100000)}

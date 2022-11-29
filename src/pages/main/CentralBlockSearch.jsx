@@ -4,6 +4,7 @@ import {themeSelector} from "../../store/selectors/themeSelector";
 import * as S from "../../styles";
 import {allTracksSelector} from "../../store/selectors/allTracksSelector";
 import {putAllTracks} from "../../store/actions/creators/allTracks";
+import {putSearchedTracks} from "../../store/actions/creators/sortedTracks";
 
 export function CentralBlockSearch() {
 	const themeSwitcher = useSelector(themeSelector)
@@ -11,15 +12,18 @@ export function CentralBlockSearch() {
 	const [searchValue, setSearchValue] = useState('')
 	const dispatch = useDispatch()
 
-	function search(event){
+
+	function search(event) {
 		if (event.key === 'Enter') {
-			const prettyValue = event.target.value.toLowerCase().trim()
-			setSearchValue(prettyValue)
-			const prettySortedTracks = allTracks.filter(el => el.name.toLowerCase().includes(prettyValue))
-			dispatch(putAllTracks(prettySortedTracks))
+			if (event.target.value === '') dispatch(putSearchedTracks(allTracks))
+			else {
+				const prettyValue = event.target.value.toLowerCase().trim()
+				setSearchValue(prettyValue)
+				const prettySortedTracks = allTracks.filter(el => el.name.toLowerCase().includes(prettyValue))
+				dispatch(putSearchedTracks(prettySortedTracks))
+			}
 		}
 	}
-
 
 	return (
 		<S.CentralBlockSearch isDarkTheme={themeSwitcher}>

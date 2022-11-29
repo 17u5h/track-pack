@@ -299,7 +299,7 @@ export const PopUp = styled.div`
     background-clip: content-box;
     border-right: 34px solid transparent;
     border-top: 34px solid transparent;
-    border-bottom: 34px solid transparent;
+    border-bottom: 2px solid transparent;
     background-color: #fff;
     border-radius: 2px;
   }
