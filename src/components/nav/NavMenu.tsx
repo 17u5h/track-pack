@@ -1,9 +1,8 @@
 import React from "react";
-import * as S from "../../styles";
-import {NavMenuLink} from "./NavMenuLink";
 import {Link} from "react-router-dom";
+import {NavMenuLink} from "./NavMenuLink";
 import {ButtonToggleTheme} from "./ButtonToggleTheme";
-
+import * as S from "../../styles";
 
 export function NavMenu() {
 

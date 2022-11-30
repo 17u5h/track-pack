@@ -1,14 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import {PlaylistItem} from "./PlaylistItem";
-import * as S from "../../styles";
-import {BASE_URL} from "../../store/store";
 import axios from "axios";
-import {Track} from "../../models/response/PlaylistAllTracks";
+import {PlaylistItem} from "./PlaylistItem";
 import {secToMinConverter} from "../../lib/secToMinConverter";
 import {PlaylistItemSkeletons} from "../../components/Skeletons/PlaylistItemSkeletons";
 import {useDispatch, useSelector} from "react-redux";
-import {putIdsLikedTracks} from "../../store/actions/creators/likedTracks";
-import {idsLikedTracksSelector} from "../../store/selectors/likedTracksSelector";
+import {putIdsCurrentTracks, putIdsLikedTracks} from "../../store/actions/creators/likedTracks";
 import {themeSelector} from "../../store/selectors/themeSelector";
 import {
 	putSortedTracksByAuthor,
@@ -16,18 +12,27 @@ import {
 	putSortedTracksByGenre
 } from "../../store/actions/creators/sortedTracks";
 import {sortTracksByAuthor, sortTracksByDate, sortTracksByGenre} from "../../lib/sortTracks";
+import * as S from "../../styles";
+import {BASE_URL} from "../../store/store";
+import {Track} from "../../models/response/PlaylistAllTracks";
+import {putAllTracks} from "../../store/actions/creators/allTracks";
+import {allTracksSelector} from "../../store/selectors/allTracksSelector";
+import {searchedTracksSelector} from "../../store/selectors/sortedTracksSelector";
 
 export function Playlist() {
 	const themeSwitcher = useSelector(themeSelector)
 	const [isLoading, setIsLoading] = useState(true)
 	const [allTracks, setAllTracks] = useState<Track[]>([])
-	const idsLikedTracks = useSelector(idsLikedTracksSelector)
+	const [visibleTracks, setVisibleTracks] = useState<Track[]>([])
 	const dispatch = useDispatch()
+	const reduxAllTracks = useSelector(allTracksSelector)
+	const searchedTracks = useSelector(searchedTracksSelector)
 
 	async function fetchAllTracks() {
 		try {
-			const {data} = await axios.get(`${BASE_URL}/catalog/track/all`)
+			const {data} = await axios.get(`${BASE_URL}/catalog/track/all/`)
 			setAllTracks(data)
+			setVisibleTracks(data)
 		} catch (e) {
 			console.log(e)
 		} finally {
@@ -43,6 +48,9 @@ export function Playlist() {
 		if (!allTracks.at(0)) return
 		const email = sessionStorage.getItem('userEmail')
 
+		const idsAllTracks = allTracks.map(el => el.id)
+		dispatch(putIdsCurrentTracks(idsAllTracks))
+
 		const likedTracks = allTracks.filter(el => el.stared_user.find(userField => userField.email === email))
 		const idsLikedTracks = likedTracks.map(el => el.id)
 		dispatch(putIdsLikedTracks(idsLikedTracks))
@@ -52,16 +60,23 @@ export function Playlist() {
 				el.isLiked = true : el.isLiked = false
 		})
 
-		dispatch(putSortedTracksByDate(sortTracksByDate(allTracks)))
-		dispatch(putSortedTracksByAuthor(sortTracksByAuthor(allTracks)))
-		dispatch(putSortedTracksByGenre(sortTracksByGenre(allTracks)))
-
+		const unsortedTracksByDate = [...allTracks]
+		const unsortedTracksByAuthor = [...allTracks]
+		const unsortedTracksByGenre = [...allTracks]
+		dispatch(putSortedTracksByDate(sortTracksByDate(unsortedTracksByDate)))
+		dispatch(putSortedTracksByAuthor(sortTracksByAuthor(unsortedTracksByAuthor)))
+		dispatch(putSortedTracksByGenre(sortTracksByGenre(unsortedTracksByGenre)))
+		dispatch(putAllTracks(allTracks))
 	}, [allTracks])
+
+	useEffect(() => {
+		searchedTracks.length && searchedTracks.length !== reduxAllTracks.length ? setVisibleTracks(searchedTracks) : setVisibleTracks(reduxAllTracks)
+	}, [reduxAllTracks, searchedTracks])
 
 	return (
 		<S.Playlist isDarkTheme={themeSwitcher}>
 			{isLoading && <PlaylistItemSkeletons/>}
-			{!isLoading && allTracks.map(el =>
+			{!isLoading && visibleTracks.map(el =>
 				<PlaylistItem
 					id={el?.id}
 					key={el?.id || (Math.random() * 100000)}
@@ -72,9 +87,7 @@ export function Playlist() {
 					trackTime={secToMinConverter(el?.duration_in_seconds)}
 					imageLink={el?.logo || '../img/icon/sprite.svg#icon-note'}
 					link={el?.track_file || ''}
-				/>
-			)
-			}
+				/>)}
 		</S.Playlist>
 	)
 }

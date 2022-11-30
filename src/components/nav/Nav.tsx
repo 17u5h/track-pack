@@ -2,9 +2,9 @@ import React, {useState} from "react";
 import {Logo} from "./Logo";
 import {NavBurger} from "./NavBurger";
 import {NavMenu} from "./NavMenu";
-import * as S from "../../styles";
 import {useSelector} from "react-redux";
 import {themeSelector} from "../../store/selectors/themeSelector";
+import * as S from "../../styles";
 
 export function Nav() {
 	const [visible, setVisible] = useState(false)

@@ -18,7 +18,6 @@ export default function loginReducer(state = initialState, action) {
 		}
 		case GET_TOKEN_SUCCESS: {
 			const {accessToken} = action.payload
-
 			return {
 				...state,
 				accessToken,

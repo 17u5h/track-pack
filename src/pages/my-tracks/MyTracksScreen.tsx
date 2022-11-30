@@ -1,11 +1,10 @@
 import React from 'react'
-import * as S from "../../styles";
 import {CentralBlockSearch} from "../main/CentralBlockSearch";
 import {useSelector} from "react-redux";
 import {themeSelector} from "../../store/selectors/themeSelector";
 import {PlaylistTitle} from "../main/PlaylistTitle";
 import {FavoritePlaylist} from "./FavoritePlaylist";
-
+import * as S from "../../styles";
 
 export function MyTracksScreen(){
   const themeSwitcher = useSelector(themeSelector)

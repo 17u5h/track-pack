@@ -1,9 +1,9 @@
 import React from 'react'
 import {TrackPlayContain} from "../../pages/main/TrackPlayContain";
 import {TrackPlayLikeDislike} from "../../pages/main/TrackPlayLikeDislike";
-import * as S from "../../styles";
 import {useSelector} from "react-redux";
 import {authorPlayingTrackSelector, titlePlayingTrackSelector} from "../../store/selectors/playingTrackSelector";
+import * as S from "../../styles";
 
 export function PlayerTrackPlay() {
 	const trackInformation = {

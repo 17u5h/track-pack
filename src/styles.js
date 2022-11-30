@@ -299,7 +299,7 @@ export const PopUp = styled.div`
     background-clip: content-box;
     border-right: 34px solid transparent;
     border-top: 34px solid transparent;
-    border-bottom: 34px solid transparent;
+    border-bottom: 2px solid transparent;
     background-color: #fff;
     border-radius: 2px;
   }
@@ -366,10 +366,10 @@ export const PlaylistTitleIcon = styled.svg`
 export const Playlist = styled.div`
   display: flex;
   flex-direction: column;
-	height: 400px;
+  height: 400px;
   overflow-y: auto;
-	padding-bottom: 150px;
-	
+  padding-bottom: 150px;
+
   &::-webkit-scrollbar {
     background-color: ${(props) => (props.isDarkTheme ? `${dark.$scrollbarColor}` : `${light.$scrollbarColor}`)};
     background-clip: content-box;
@@ -401,23 +401,23 @@ export const PlaylistItemSkeleton = styled.div`
   margin-bottom: 12px;
 `
 export const TrackTitleImageSkeleton = styled.div`
-	width: 50px;
-	height: 50px;
-	margin-right: 20px;
-	background-color: ${(props) => (props.isDarkTheme ? `${dark.$skeletonColor}` : `${light.$skeletonColor}`)};
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  background-color: ${(props) => (props.isDarkTheme ? `${dark.$skeletonColor}` : `${light.$skeletonColor}`)};
 `
 export const TrackTitleSkeleton = styled(TrackTitleImageSkeleton)`
-	width: 260px;
-	height: 20px;
+  width: 260px;
+  height: 20px;
   margin-right: 40px;
 `
 export const TrackAuthorSkeleton = styled(TrackTitleImageSkeleton)`
-	width: 220px;
+  width: 220px;
   height: 20px;
   margin-right: 40px;
 `
 export const TrackAlbumSkeleton = styled(TrackTitleImageSkeleton)`
-	width: 160px;
+  width: 160px;
   height: 20px;
 `
 
@@ -502,19 +502,20 @@ export const TrackAlbum = styled.div`
 `
 
 export const TrackTime = styled.div`
-	display: flex;
-	gap: 16px;
+  display: flex;
+  gap: 16px;
+
   svg {
     width: 14px;
     height: 12px;
-    
+
     fill: transparent;
-		cursor: pointer;
+    cursor: pointer;
     stroke: ${(props) => (props.isDarkTheme ? `${dark.$textFade}` : `${light.$textFade}`)};
   }
 
   span {
-    
+
     font-size: 16px;
     line-height: 24px;
     text-align: right;
@@ -522,12 +523,12 @@ export const TrackTime = styled.div`
   }
 `
 export const LoadingLikeSpinner = styled.div`
-	border: 2px solid #2E2E2E;
-	border-top: 2px solid #cccccc;
-	border-radius: 50%;
-	height: 14px;
-	width: 14px;
-	animation: spin 2s linear infinite;
+  border: 2px solid #2E2E2E;
+  border-top: 2px solid #cccccc;
+  border-radius: 50%;
+  height: 14px;
+  width: 14px;
+  animation: spin 2s linear infinite;
   @keyframes spin {
     0% {
       transform: rotate(0deg);
@@ -578,7 +579,7 @@ export const SideBarList = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-	gap: 20px;
+  gap: 20px;
 `
 
 export const SideBarItem = styled.div`
@@ -645,11 +646,20 @@ const PlayerButton = styled.div`
 `
 export const PlayerButtonPrev = styled(PlayerButton)`
   margin-right: 23px;
-
+  cursor: pointer;
+	
   svg {
     width: 15px;
     height: 14px;
     fill: ${(props) => (props.isDarkTheme ? `${dark.$buttons}` : `${light.$buttons}`)};
+
+    :hover {
+      stroke: #ACACAC;
+    }
+
+    :active {
+      stroke: #fff;
+    }
   }
 `
 export const PlayerButtonPlayPause = styled(PlayerButton)`
@@ -664,33 +674,60 @@ export const PlayerButtonPlayPause = styled(PlayerButton)`
 export const PlayerButtonNext = styled(PlayerButton)`
   margin-right: 28px;
   fill: #a53939;
+  cursor: pointer;
 
   svg {
     width: 15px;
     height: 14px;
     fill: none;
     stroke: ${(props) => (props.isDarkTheme ? `${dark.$buttons}` : `${light.$buttons}`)};
+
+    :hover {
+      stroke: #ACACAC;
+    }
+
+    :active {
+      stroke: #fff;
+    }
   }
 `
 export const PlayerButtonRepeat = styled(PlayerButton)`
   margin-right: 24px;
+  cursor: pointer;
 
   svg {
     width: 18px;
     height: 12px;
     fill: transparent;
     stroke: ${(props) => (props.isDarkTheme ? `${dark.$buttons}` : `${light.$buttons}`)};
+
+    :hover {
+      stroke: #ACACAC;
+    }
+
+    :active {
+      stroke: #fff;
+    }
   }
 `
 export const PlayerButtonShuffle = styled(PlayerButton)`
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   svg {
     width: 19px;
     height: 12px;
     fill: transparent;
     stroke: ${(props) => (props.isDarkTheme ? `${dark.$buttons}` : `${light.$buttons}`)};
+
+    :hover {
+      stroke: #ACACAC;
+    }
+
+    :active {
+      stroke: #fff;
+    }
   }
 `
 export const TrackPlay = styled.div`
@@ -820,7 +857,7 @@ export const VolumeValue = styled.div`
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-		
+
     ::-webkit-slider-runnable-track {
       height: 2px;
       background-color: ${(props) => (props.isDarkTheme ? `${dark.$volumeColor}` : `${light.$volumeColor}`)};
@@ -830,7 +867,7 @@ export const VolumeValue = styled.div`
     ::-webkit-slider-thumb {
       background: ${(props) => (props.isDarkTheme ? `${dark.$volumeColor}` : `${light.$volumeColor}`)};
       border-radius: 10px/100%;
-			border: 1px solid ${(props) => (props.isDarkTheme ? `${dark.$buttons}` : `${light.$textFade}`)};;
+      border: 1px solid ${(props) => (props.isDarkTheme ? `${dark.$buttons}` : `${light.$textFade}`)};;
       cursor: pointer;
       width: 12px;
       height: 12px;

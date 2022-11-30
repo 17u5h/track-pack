@@ -1,8 +1,7 @@
 import React from 'react'
 import {SideBarItem} from "./SideBarItem";
-import * as S from "../../styles";
 import {Link} from "react-router-dom";
-
+import * as S from "../../styles";
 
 export function SideBarBlock() {
 

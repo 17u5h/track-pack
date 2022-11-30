@@ -4,7 +4,6 @@ import {
 	GET_TOKEN_SUCCESS,
 } from "../types/types";
 
-
 type types ={
 	accessToken: string,
 }

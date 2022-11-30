@@ -3,10 +3,9 @@ import {CentralBlockSearch} from "./CentralBlockSearch";
 import {CentralBlockFilter} from "./CentralBlockFilter";
 import {PlaylistTitle} from "./PlaylistTitle";
 import {Playlist} from "./Playlist";
-import * as S from "../../styles";
 import {useSelector} from "react-redux";
 import {themeSelector} from "../../store/selectors/themeSelector";
-
+import * as S from "../../styles";
 
 export function CentralBlock() {
 	const themeSwitcher = useSelector(themeSelector)

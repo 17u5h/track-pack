@@ -1,15 +1,13 @@
-import React, {useContext, useEffect, useRef, useState} from 'react'
-import {PopUp} from "./PopUpFiltered";
-import * as S from "../../styles";
-import {ThemeContext} from "../../contexts/theme";
+import React, {useState} from 'react'
 import {useSelector} from "react-redux";
 import {themeSelector} from "../../store/selectors/themeSelector";
-import {putSortedTracksByDate} from "../../store/actions/creators/sortedTracks";
 import {
 	sortedTracksByAuthorSelector,
 	sortedTracksByDateSelector,
 	sortedTracksByGenreSelector
 } from "../../store/selectors/sortedTracksSelector";
+import {PopUp} from "./PopUpFiltered";
+import * as S from "../../styles";
 
 export function CentralBlockFilter() {
 	const [whoActive, setActive] = useState('none')

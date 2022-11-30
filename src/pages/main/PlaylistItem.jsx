@@ -1,12 +1,11 @@
 import React from 'react'
-import * as S from "../../styles"
 import {useDispatch, useSelector} from "react-redux";
 import {themeSelector} from "../../store/selectors/themeSelector";
 import {LikeDislikeButton} from "./LikeDislikeButton";
-import axios from "axios";
-import {BASE_URL} from "../../store/store";
-import {fetchGetTrack} from "../../store/actions/thunks/playnigTrack";
-import {urlPlayingTrackSelector} from "../../store/selectors/playingTrackSelector";
+import * as S from "../../styles"
+import {idsCurrentTracksSelector} from "../../store/selectors/TracksSelector";
+import {fetchCurrentTrack, pushStore} from "../../lib/fetchCurrentTrack";
+import {store} from "../../store/store";
 
 //
 // type Props = {
@@ -22,17 +21,14 @@ import {urlPlayingTrackSelector} from "../../store/selectors/playingTrackSelecto
 
 
 export function PlaylistItem(props) {
+	pushStore(store)
 	const themeSwitcher = useSelector(themeSelector)
 	const dispatch = useDispatch()
-
-	async function playTrackInPlayer() {
-		await dispatch(fetchGetTrack(props.id))
-	}
 
 	return (
 		<S.PlaylistItem>
 			<S.PlaylistTrack>
-				<S.TrackTitle onClick={playTrackInPlayer}>
+				<S.TrackTitle onClick={() => fetchCurrentTrack(props.id, dispatch)}>
 					<S.TrackTitleImage isDarkTheme={themeSwitcher}>
 						<svg>
 							<use href={props.imageLink}/>
