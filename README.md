@@ -51,6 +51,8 @@
 
 ### Плеер
 
-![Screenshot 2022-08-26 at 12.26.33.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4f677356-bcbb-4f8d-a38a-d649c562f3dd/Screenshot_2022-08-26_at_12.26.33.png)
+![image](https://user-images.githubusercontent.com/102058870/216818545-dffe8cec-7be1-49fd-893b-78774768e69a.png)
+![image](https://user-images.githubusercontent.com/102058870/216818577-ee2ab001-823c-4aa0-8167-e615b336286c.png)
+
 
 ### Левое меню
