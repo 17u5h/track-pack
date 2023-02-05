@@ -52,7 +52,7 @@
 ### Плеер
 
 ![image](https://user-images.githubusercontent.com/102058870/216818545-dffe8cec-7be1-49fd-893b-78774768e69a.png)
-![image](https://user-images.githubusercontent.com/102058870/216818577-ee2ab001-823c-4aa0-8167-e615b336286c.png)
-
 
 ### Левое меню
+![image](https://user-images.githubusercontent.com/102058870/216818577-ee2ab001-823c-4aa0-8167-e615b336286c.png)
+
