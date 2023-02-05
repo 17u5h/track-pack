@@ -1,51 +1,56 @@
-Моя задача в этом проекте - создать музыкальный сервис, в соответствии с тех.заданием, работающий с предоставленной API и сделанный по предоставленному дизайну
+Стек технологий: JavaScript, TypeScript, React, Redux, react-thunk, axios, react-router-dom, styled-components
 
 
+Моя задача в этом проекте - создать музыкальный сервис, в соответствии с тех.заданием, работающий с предоставленным API и сделанный по предоставленному дизайну
 
+Описание проекта:
 
-# Getting Started with Create React App
+### Экран авторизации
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Стартовый экран - экран "Войти".
 
-## Available Scripts
+Пользователю предлагается ввести логин и пароль, если он уже зарегистрирован, и нажать "Войти". Если пользователь еще не зарегистрирован, ему необходимо нажать "Зарегистрироваться". 
 
-In the project directory, you can run:
+### Экран регистрации
 
-### `npm start`
+На экране регистрации пользователь придумывает логин и пароль, а также повторяет пароль. После этого он нажимает “Зарегистрироваться”. После регистрации пользователь снова попадает на стартовый экран “Войти”, где вводит логин и пароль заново.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Экран “Треки”
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Главный экран, на котором отражаются все доступные треки. Во время загрузки показывается экран скелетона. 
 
-### `npm test`
+Изначально нижний плеер скрыт. Он показывается, только когда пользователь нажимает на любой из треков. При перезагрузке страницы плеер тоже скрыт. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+На главном экране реализуется сортировка треков. Пользователь вводит название трека в строке “Поиск”, и происходит их фильтрация по названию. Это значит, что, если пользователь ввел "tro", ему выдаст трек с названием "Elektro" и все треки, в названиях которых есть строка tro: "Troelf", "FooTroBar”. 
 
-### `npm run build`
+***Поиск по году выпуска***
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Осуществляется с помощью сортировки без притягивания бэкенда. Пользователь может сортировать треки двумя способами: от старых к новым и от новых к старым. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+***Поиск по исполнителю***
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Осуществляется с помощью бэкенда. При нажатии на “исполнителю” пользователь видит выпадающее меню, в котором показываются только первые пять элементов (остальные нужно скроллить)
 
-### `npm run eject`
+Пользователь может выбрать несколько исполнителей одновременно. 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+***Поиск по жанру***
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Осуществляется с помощью бэкенда. При нажатии на “жанру” пользователь видит выпадающее меню, в котором показываются только первые пять элементов (остальные нужно скроллить)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Пользователь может выбрать несколько жанров одновременно.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Экраны подборок: “Плейлист дня”, “100 танцевальных хитов”, “Инди заряд”
 
-## Learn More
+В каждой подборке отображается список треков, которые в нее входят.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Поиск по исполнителю, жанру, году выпуска не осуществляется.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Экран “Мои треки”
+
+Экран с подборкой треков, которые пользователь добавил в избранное. 
+
+### Плеер
+
+![Screenshot 2022-08-26 at 12.26.33.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4f677356-bcbb-4f8d-a38a-d649c562f3dd/Screenshot_2022-08-26_at_12.26.33.png)
+
+### Левое меню
